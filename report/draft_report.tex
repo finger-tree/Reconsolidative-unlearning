@@ -1,0 +1,126 @@
+% COM3013 Coursework Option A Report
+% Left-aligned sections, centered title page
+
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{sectsty}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% === Section title formatting: LEFT-ALIGNED ===
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+\newcommand{\paragraphbold}[1]{\vspace{1em}\noindent\textbf{#1.}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{COM3013 Coursework Option A Report}
+
+\title{\bfseries Brain-Inspired Machine Unlearning: Emulating the Transformative Success of Emotional Memory Reconsolidation Therapy}
+\author{
+    Lam, al01759 \\[0.5em]
+    \small School of Computer Science and Electronic Engineering \\
+    \small University of Surrey \\
+    \small Guildford, United Kingdom
+}
+\date{1 Feb 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage{}
+\setcounter{page}{1}
+
+\section{Abstract}
+Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. 
+Inspired by a distributive network able to cleanly target a memory and modify it, we propose a way to translate
+this process into machine learning to solve the unlearning problem.
+
+\section{Introduction and Literature Review}
+\subsection{overview}
+comprehensive overview of topic,
+\subsection{key problems and challenges}
+narrow down to specific problem,
+\subsection{past work and state-of-the-art}
+what other work has been done on it or aspects relating to,
+key technologies and state-of-the-art
+
+\section{System requirements and specification}
+requirements gathering and prioritisation
+
+appropriate software development life cycle methodologies for development projects
+
+identify key and optional features / aspects
+
+\section{Legal, Social Ethical and Professional issues}
+
+\section{System Design}
+apply chosen methodology (development)
+
+design experiemnts and analytical techniques (research)
+
+identify phases of development or experimental work
+
+add details of design or experiments - challenges, problems, workarounds, adaptations, extensions, etc.
+
+justify all design choices and highlight the challenges
+
+\section{Experimental Results / Evaluation}
+
+evaluate how the system performs
+
+discuss results and show insights into why you got that result
+
+\section{Conclusion and Future Work}
+
+Overall project conclusions (how did you achieve the project objectives set at the beginning?)
+
+Should be readable almost in isolation (reader should get a good understanding of what was achieved)
+
+Future work - any problems that could be fixed, or scope for improvement (development), or interesting ways forward (research)
+
+\section{References}
+
+\begin{thebibliography}{9}
+
+\bibitem{bourtoule2021}
+L. Bourtoule, V. Chandrasekaran, P. Choquette-Choo, H. Jia, A. Travers, B. Zhang, D. Lie, and N. Papernot,
+“Machine Unlearning,” in \textit{Proceedings of the IEEE Symposium on Security and Privacy}, 2021.
+
+\bibitem{nader2000}
+K. Nader, G. E. Schafe, and J. E. LeDoux,
+“Fear memories require protein synthesis in the amygdala for reconsolidation after retrieval,”
+\textit{Nature}, vol. 406, no. 6797, pp. 722–726, 2000.
+
+\bibitem{cao2015}
+Y. Cao and J. Yang,
+“Towards Making Systems Forget with Machine Unlearning,”
+in \textit{Proceedings of the IEEE Symposium on Security and Privacy}, 2015.
+
+\bibitem{voigt2017}
+P. Voigt and A. von dem Bussche,
+\textit{The EU General Data Protection Regulation (GDPR): A Practical Guide},
+Springer, 2017.
+
+\end{thebibliography}
+
+\appendix
+\section{Appendix}
+
+\end{document}
