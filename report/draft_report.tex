@@ -49,15 +49,41 @@
 
 \section{Abstract}
 Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. 
-Inspired by a distributive network able to cleanly target a memory and modify it, we propose a way to translate
-this process into machine learning to solve the unlearning problem.
+Inspired by a distributive network able to cleanly target a memory and modify it, we investigate it's interpretation
+in the literature, and attempt to create a model capable of unlearning.
 
-\section{Introduction and Literature Review}
-\subsection{overview}
-(by topic)
+\section{Introduction}
+Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. 
+The most notable refers to the UK General Data Protection Regulation Article 17 (the right to forget), 
+protecting data ownership, consent, personal safety among others~\cite{edps2025,liu2024}. 
+This task is incredibly daunting due to the entangled sequential transformation during training, 
+akin to a one-way cryptographic function~\cite{cao2015}. To date, computationally acceptable solutions are mere 
+approximations with degrees of residual influence, while exact solutions are far from feasibly operational~\cite{xu2023,wang2024}.
+
+Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory 
+therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic 
+lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.
+
+(todo: what you have done)
+
+Emulating this in context of a learnable model would have profound implications. 
+Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. 
+Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
+)
+
+\section{Literature Review}
+\subsubsection{machine unlearning}
+different types of unlearning models
+
+\subsubsection{measuring unlearning}
+\subsubsection{reconsolidation and emotional memory therapy}
 reconsolidation (neurobiology)
+
+\subsubsection{multiple-trace theory and predictive coding}
 multiple-trace theory (neurobiology)
 predictive coding (machine learning)
+
+\subsubsection{associative memory modeling and unlearning}
 associative memory modeling (machine learning)
 unlearning (machine learning)
 
@@ -103,26 +129,109 @@ Future work - any problems that could be fixed, or scope for improvement (develo
 
 \section{References}
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{26}
+
+\bibitem{openai2024}
+OpenAI, ``GPT-4o System Card,'' OpenAI, Tech. Rep., Sep. 2024. [Online]. Available: https://openai.com/index/gpt-4o-system-card/
+
+\bibitem{anthropic2024}
+Anthropic, ``Claude 3.5 Technical Report,'' Anthropic, Tech. Rep., Oct. 2024. [Online]. Available: https://www.anthropic.com/news/claude-3-5-sonnet
+
+\bibitem{meta2024}
+Meta AI, ``Llama 3.1-405B Release Notes and System Card,'' Meta AI, Tech. Rep., Jul. 2024. [Online]. Available: https://ai.meta.com/blog/meta-llama-3-1/
+
+\bibitem{deepmind2024}
+Google DeepMind, ``Gemini 1.5 Pro Technical Report,'' Google DeepMind, Tech. Rep., Aug. 2024. [Online]. Available: https://deepmind.google/technologies/gemini/report/
+
+\bibitem{touvron2023}
+A.~Touvron \emph{et al.}, ``Llama 2: Open foundation and fine-tuned chat models,'' Meta AI, arXiv:2307.09288v3, Jul. 2023 (updated 2024). [Online]. Available: https://arxiv.org/abs/2307.09288
 
 \bibitem{bourtoule2021}
-L. Bourtoule, V. Chandrasekaran, P. Choquette-Choo, H. Jia, A. Travers, B. Zhang, D. Lie, and N. Papernot,
-“Machine Unlearning,” in \textit{Proceedings of the IEEE Symposium on Security and Privacy}, 2021.
+C.~Bourtoule \emph{et al.}, ``Machine unlearning,'' in \emph{Proc. IEEE Symp. Security Privacy (SP)}, San Francisco, CA, USA, 2021, pp. 141--159, doi: 10.1109/SP40001.2021.00092.
 
-\bibitem{nader2000}
-K. Nader, G. E. Schafe, and J. E. LeDoux,
-“Fear memories require protein synthesis in the amygdala for reconsolidation after retrieval,”
-\textit{Nature}, vol. 406, no. 6797, pp. 722–726, 2000.
+\bibitem{kurmanji2024}
+M.~Kurmanji \emph{et al.}, ``Limits of gradient-based unlearning in large models,'' in \emph{Proc. NeurIPS}, New Orleans, LA, USA, 2024.
+
+\bibitem{shao2025}
+R.~Shao \emph{et al.}, ``Verifiable unlearning with zero-knowledge proofs,'' in \emph{Proc. ICLR}, Vienna, Austria, 2025.
+
+\bibitem{liu2024}
+K.~Z.~Liu, ``Machine unlearning in 2024,'' Stanford CS Blog, May 2024. [Online]. Available: https://ai.stanford.edu/~kzliu/blog/unlearning
+
+\bibitem{edps2025}
+European Data Protection Supervisor (EDPS), ``Preliminary Findings on Machine Unlearning and GDPR Article 17 Enforcement Actions (2024--2025),'' EDPS, Brussels, Belgium, Tech. Rep., Mar. 2025.
 
 \bibitem{cao2015}
-Y. Cao and J. Yang,
-“Towards Making Systems Forget with Machine Unlearning,”
-in \textit{Proceedings of the IEEE Symposium on Security and Privacy}, 2015.
+Y.~Cao and J.~Yang, ``Towards making systems forget with machine unlearning,'' in \emph{Proc. IEEE Symp. Security Privacy (S\&P)}, San Jose, CA, USA, May 2015, pp. 463--480, doi: 10.1109/SP.2015.35.
 
-\bibitem{voigt2017}
-P. Voigt and A. von dem Bussche,
-\textit{The EU General Data Protection Regulation (GDPR): A Practical Guide},
-Springer, 2017.
+\bibitem{sekhar2021}
+A.~Sekhari, J.~Acharya, G.~Kamath, and A.~T.~Suresh, ``Remember what you want to forget: Algorithms for machine unlearning,'' in \emph{Adv. Neural Inf. Process. Syst. (NeurIPS)}, vol. 34, 2021, pp. 18075--18086.
+
+\bibitem{xu2023}
+H.~Xu, T.~Zhu, L.~Zhang, W.~Zhou, and P.~S.~Yu, ``Machine unlearning: A survey,'' \emph{arXiv preprint arXiv:2306.03558}, 2023.
+
+\bibitem{wang2024}
+C.~Wang \emph{et al.}, ``Machine unlearning: A comprehensive survey,'' \emph{arXiv preprint arXiv:2405.07406}, 2024.
+
+\bibitem{brunet2008}
+A.~Brunet, S.~P.~Orr, J.~Tremblay, K.~Robertson, K.~Nader, and R.~K.~Pitman, ``Effect of post-retrieval propranolol on psychophysiologic responding during subsequent script-driven traumatic imagery in post-traumatic stress disorder,'' \emph{J. Psychiatr. Res.}, vol. 42, no. 6, pp. 503--506, May 2008, doi: 10.1016/j.jpsychires.2007.05.006.
+
+\bibitem{brunet2014}
+A.~Brunet, É.~Thomas, D.~Saumier, A.~R.~Ashbaugh, and R.~K.~Pitman, ``Trauma reactivation plus propranolol is associated with durably low physiological responding during subsequent script-driven traumatic imagery,'' \emph{Can. J. Psychiatry}, vol. 59, no. 4, pp. 228--232, Apr. 2014, doi: 10.1177/070674371405900408.
+
+\bibitem{brunet2018}
+A.~Brunet \emph{et al.}, ``Reduction of PTSD symptoms with pre-reactivation propranolol therapy: A randomized controlled trial,'' \emph{Am. J. Psychiatry}, vol. 175, no. 5, pp. 427--433, May 2018, doi: 10.1176/appi.ajp.2017.17050481.
+
+\bibitem{wright2021}
+L.~A.~Wright, L.~Horstmann, E.~A.~Holmes, and J.~I.~Bisson, ``Consolidation/reconsolidation therapies for the prevention and treatment of PTSD and re-experiencing: a systematic review and meta-analysis,'' \emph{Transl. Psychiatry}, vol. 11, no. 1, p. 453, 2021, doi: 10.1038/s41398-021-01570-w.
+
+\bibitem{kamboj2020}
+S.~K.~Kamboj \emph{et al.}, ``Reduction in the occurrence of distressing involuntary memories following propranolol or hydrocortisone in healthy women,'' \emph{Psychol. Med.}, vol. 50, pp. 1148--1155, 2020, doi: 10.1017/S0033291719000947.
+
+\bibitem{smith2005}
+K.~T.~Smith and L.~R.~Squire, ``Effects of memory consolidation on human hippocampal activity during retrieval,'' \emph{J. Neurosci.}, vol. 25, no. 47, pp. 10805--10810, Nov. 2005, doi: 10.1523/JNEUROSCI.2891-05.2005.
+
+\bibitem{ngo2014}
+H.-G.~Ngo, A.-M.~Björk, and J.~Born, ``Memory consolidation by replay of stimulus-specific neural activity,'' \emph{Proc. Natl. Acad. Sci. U.S.A.}, vol. 111, no. 52, pp. 18727--18732, Dec. 2014, doi: 10.1073/pnas.1418931111.
+
+\bibitem{davis2010}
+R.~Davis, S.~Renaudineau, R.~Poirier, B.~Poucet, E.~Save, and S.~Laroche, ``The formation and stability of recognition memory: What happens upon recall?,'' \emph{Front. Behav. Neurosci.}, vol. 4, p. 117, 2010, doi: 10.3389/fnbeh.2010.00117.
+
+\bibitem{spens2023}
+E.~Spens and N.~Burgess, ``A generative model of memory construction and consolidation,'' \emph{Nat. Hum. Behav.}, vol. 7, pp. 1035--1046, 2023, doi: 10.1038/s41562-023-01599-8.
+
+\bibitem{sun2023}
+W.~Sun, M.~Advani, N.~Spruston, A.~Saxe, and J.~E.~Fitzgerald, ``Organizing memories for generalization in complementary learning systems,'' \emph{Nat. Neurosci.}, vol. 26, pp. 1436--1447, 2023, doi: 10.1038/s41593-023-01381-8.
+
+\bibitem{mcgaugh2000}
+J.~L.~McGaugh, ``Memory--a century of consolidation,'' \emph{Science}, vol. 287, no. 5451, pp. 248--251, Jan. 2000, doi: 10.1126/science.287.5451.248.
+
+\bibitem{neel2020}
+S.~Neel, A.~Roth, and S.~Sharifi-Malvajerdi, ``Descent-to-delete: Gradient-based methods for machine unlearning,'' \emph{arXiv preprint arXiv:2007.02923}, 2020.
+
+\bibitem{meng2022}
+K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov, ``Locating and editing factual associations in GPT,'' in \emph{Adv. Neural Inf. Process. Syst. (NeurIPS)}, 2022.
+
+\bibitem{meng2023}
+K.~Meng, A.~S.~Sharma, A.~Andonian, Y.~Belinkov, and D.~Bau, ``MEMIT: Mass-editing memory in a transformer,'' in \emph{Int. Conf. Learn. Represent. (ICLR)}, 2023.
+
+\bibitem{liu2020mask}
+Y.~Liu \emph{et al.}, ``Learn to forget: Machine unlearning via neuron masking,'' \emph{arXiv preprint arXiv:2003.10933}, 2020.
+
+\bibitem{liu2023fisher}
+Y.~Liu, C.~Sun, Y.~Wu, and A.~Zhou, ``Unlearning with Fisher masking,'' \emph{arXiv preprint arXiv:2310.05331}, 2023.
+
+\bibitem{hu2021}
+E.~J.~Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, and W.~Chen, ``LoRA: Low-rank adaptation of large language models,'' \emph{arXiv preprint arXiv:2106.09685}, 2021.
+
+\bibitem{yao2023}
+Y.~Yao, ``Large language model unlearning,'' \emph{arXiv preprint arXiv:2310.10683}, 2023.
+
+\bibitem{gundavarapu2024}
+S.~K.~Gundavarapu, S.~Agarwal, A.~Arora, and C.~T.~Jagadeeshaiah, ``Machine unlearning in large language models,'' \emph{arXiv preprint arXiv:2405.15152}, 2024.
+
+\bibitem{ramsauer2020}
+H.~Ramsauer \emph{et al.}, ``Hopfield networks is all you need,'' \emph{arXiv preprint arXiv:2008.02217}, 2020.
 
 \end{thebibliography}
 
