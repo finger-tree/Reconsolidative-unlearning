@@ -49,8 +49,8 @@
 
 \section{Abstract}
 Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. 
-Inspired by a distributive network able to cleanly target a memory and modify it, we investigate it's interpretation
-in the literature, and attempt to create a model capable of unlearning.
+Inspired by a distributive network able to cleanly target a memory and modify it, we investigate the practical models
+of associative memory and attempt to create a machine unlearning model, based on it's properties.
 
 \section{Introduction}
 Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. 
@@ -63,21 +63,65 @@ approximations with degrees of residual influence, while exact solutions are far
 Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory 
 therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic 
 lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.
-
 (todo: what you have done)
 
 Emulating this in context of a learnable model would have profound implications. 
 Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. 
 Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
-)
+iiid
 
 \section{Literature Review}
 \subsubsection{machine unlearning}
-different types of unlearning models
+\subsubsection{current machine unlearning models and techniques}
+The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
-\subsubsection{measuring unlearning}
+The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions"
+Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.
+Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.
+Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
+
+The servey, "Machine Unlearning: A comprehensive servey" proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, 
+unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.
+Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
+
+\paragraphbold{Exact unlearning}  These methods aim to remove the influence of the forget set as if the model has been completely retrained.
+They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,
+only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.
+SISA, ARCANE and others follow this methodology.
+
+\paragraphbold{Approximate unlearning}
+Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
+
+\paragraphbold{Direct Fine-tuning}
+Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,
+akin to catastrophic forgetting in continual learning. Below are some examples:
+
+Gradient ascent (GA), additionally train a loss over the forget set using negative log-likelihood loss, 
+To maintain model accuracy, regularization loss over the retrain set is often used, like a gradient descent or KL divergence. 
+
+Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
+
+\paragraphbold{Localized Parameter Modification}
+Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples:
+Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
+Locate-then-unlearn methods
+
+\paragraphbold{Leveraging auxiliary models}
+Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
+
+\paragraphbold{Input/Output-based unlearning}
+Input/Output-based unlearning focuses filtering the model's inputs or outputs without changing the core model to achieve unlearning on the forget set.
+
+
+TODO: only problems and directions in machine unlearning, 
+TODO: and machine unlearning verification methods, which one of that would you choose for your shit
+
+
+\subsubsection{metric on machine unlearning}
+NeuralIPS 2023 unlearning competition benchmark
+
 \subsubsection{reconsolidation and emotional memory therapy}
-reconsolidation (neurobiology)
+reconsolidation (neurobiology), connect properties observed and attempts to model it.
 
 \subsubsection{multiple-trace theory and predictive coding}
 multiple-trace theory (neurobiology)
@@ -89,6 +133,7 @@ unlearning (machine learning)
 
 \subsection{key problems and challenges}
 narrow down to specific problem,
+
 \subsection{past work and state-of-the-art}
 what other work has been done on it or aspects relating to,
 key technologies and state-of-the-art

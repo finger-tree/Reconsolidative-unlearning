@@ -1,4 +1,4 @@
-# included topics:
+# Literature review:
 
 ###
 multiple trace theory
@@ -22,8 +22,18 @@ brain energy rules (effort, reward)
 neuron abbstraction concept (landmarks)
 
 
-# system design (who knows):
-it is made to unlearn through emulating brain functions
-just like a bird's brain is made to make nests
-or a markov-neural network is made to predict probabilities
 
+
+# system design (who knows):
+
+GA
+$$\mathcal{L}_{GA}(\theta{}) = - \mathbb{E}_{(x,y)\sim{}D_f}[-log(P(y|x;\theta{}))]$$
+KL to align model:
+$$\mathcal{L}_{KL}(\theta{}) = \mathbb{E}_{(x,y)\sim{}D_f}[D_{KL}(p(y|x;\theta{}_{orig})||p(y|x;\theta_{f}))]$$
+
+PO: 
+DPO (Direct preference optimisation):
+$$\mathcal{L}_{DPO, \beta{}}(\theta{}) = - \frac{1}{\beta{}}\mathbb{E}_{D_p}[log\sigma{}(\beta{}log\frac{p(y_w|X;\theta{})}{p(y_w|X;\theta{}_{ori})} - \beta{}log\frac{p(y_l|X;\theta{})}{p(y_l|X;\theta{}_{ori})})]$$
+
+NPO (negative preference optimisation):
+$$\mathcal{L}_{NPO, \beta{}}(\theta{}) = \frac{1}{\beta{}}\mathbb{E}_{(x, y)\sim{}D_f}[log\sigma{}(-\beta{}log\frac{p(y|x;\theta{})}{p(y|x;\theta{}_{orig})})]$$
