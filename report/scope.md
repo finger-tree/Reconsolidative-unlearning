@@ -37,3 +37,12 @@ $$\mathcal{L}_{DPO, \beta{}}(\theta{}) = - \frac{1}{\beta{}}\mathbb{E}_{D_p}[log
 
 NPO (negative preference optimisation):
 $$\mathcal{L}_{NPO, \beta{}}(\theta{}) = \frac{1}{\beta{}}\mathbb{E}_{(x, y)\sim{}D_f}[log\sigma{}(-\beta{}log\frac{p(y|x;\theta{})}{p(y|x;\theta{}_{orig})})]$$
+
+
+look into targeted unlearning methods:
+DEPN Wu et al., 2023
+WAGLE Jia et al., 2024
+Needle (Hong et al., 2024)
+
+ULD (Ji et al., 2024)
+RKLD (Wang et al., 2024)

@@ -18,14 +18,6 @@
 \usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
-% === Section title formatting: LEFT-ALIGNED ===
-\titleformat{\section}
-  {\normalfont\Large\bfseries}{\thesection}{1em}{}
-
-\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
-
-\newcommand{\paragraphbold}[1]{\vspace{1em}\noindent\textbf{#1.}}
-
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\thepage}
@@ -71,8 +63,8 @@ Secondly, reconsolidation allows for memory alteration, allowing data dynamic mo
 iiid
 
 \section{Literature Review}
-\subsubsection{machine unlearning}
-\subsubsection{current machine unlearning models and techniques}
+\subsection{machine unlearning}
+\subsection{current machine unlearning models and techniques}
 The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
 The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions"
@@ -84,15 +76,16 @@ The servey, "Machine Unlearning: A comprehensive servey" proides a high level cl
 unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.
 Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
 
-\paragraphbold{Exact unlearning}  These methods aim to remove the influence of the forget set as if the model has been completely retrained.
+\subsubsection{Exact unlearning}  
+These methods aim to remove the influence of the forget set as if the model has been completely retrained.
 They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,
 only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.
 SISA, ARCANE and others follow this methodology.
 
-\paragraphbold{Approximate unlearning}
+\subsubsection{Approximate unlearning}
 Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
 
-\paragraphbold{Direct Fine-tuning}
+\subsubsection{Direct Fine-tuning}
 Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,
 akin to catastrophic forgetting in continual learning. Below are some examples:
 
@@ -101,15 +94,15 @@ To maintain model accuracy, regularization loss over the retrain set is often us
 
 Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
 
-\paragraphbold{Localized Parameter Modification}
+\subsubsection{Localized Parameter Modification}
 Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples:
 Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
 Locate-then-unlearn methods
 
-\paragraphbold{Leveraging auxiliary models}
+\subsubsection{Leveraging auxiliary models}
 Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
 
-\paragraphbold{Input/Output-based unlearning}
+\subsubsection{Input/Output-based unlearning}
 Input/Output-based unlearning focuses filtering the model's inputs or outputs without changing the core model to achieve unlearning on the forget set.
 
 
@@ -117,17 +110,30 @@ TODO: only problems and directions in machine unlearning,
 TODO: and machine unlearning verification methods, which one of that would you choose for your shit
 
 
-\subsubsection{metric on machine unlearning}
-NeuralIPS 2023 unlearning competition benchmark
+\subsection{Metric on machine unlearning}
 
-\subsubsection{reconsolidation and emotional memory therapy}
+\subsubsection{NeuraIPS 2023 unlearning competition benchmark} 
+The NeuraIPS 2023 competition is hosted on Kaggle, to address the technical challenges of machine unlearning. It aims to catalyse the use of
+efficient machine unlearning algorithms, as well promoting the standardization of unlearning benchmarks. This benchmark assesses the performance
+of approximated unlearning algorithms on unlearning datapoints from a simple classification model.
+
+The bases for comparison is inspired by Differential Privacy, 
+
+what is the metric being measured
+
+optimization techniques used in the competition
+
+
+
+
+
+
+
+\subsection{reconsolidation and emotional memory therapy}i
 reconsolidation (neurobiology), connect properties observed and attempts to model it.
 
-\subsubsection{multiple-trace theory and predictive coding}
-multiple-trace theory (neurobiology)
-predictive coding (machine learning)
 
-\subsubsection{associative memory modeling and unlearning}
+\subsection{associative memory modeling and unlearning}
 associative memory modeling (machine learning)
 unlearning (machine learning)
 

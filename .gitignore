@@ -1,0 +1,38 @@
+# Ignore LaTeX auxiliary and temporary files
+*.aux
+*.lof
+*.lot
+*.fls
+*.out
+*.toc
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.run.xml
+*.log
+
+# Ignore everything in the report folder except PDFs
+report/*
+!report/*.pdf
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Docker build artifacts
+dist/
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.tgz
+*.egg-info/
+*.egg
+*.whl
+
+# Ignore environment files
+.env
+*.env

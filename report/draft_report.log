@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  16 APR 2026 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  21 APR 2026 19:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -436,24 +436,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (./draft_report.aux)
 \openout1 = `draft_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -508,49 +508,44 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 43.
+Package hyperref Info: Link coloring OFF on input line 35.
  (./draft_report.out) (./draft_report.out)
 \@outlinefile=\write4
 \openout4 = `draft_report.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 74.
-
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.98 
-      [1
+l.88 \subsubsection{Direct Fine-tuning}
+                                        [1
 
 ] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 []\OT1/cmr/m/n/10 OpenAI, ``GPT-4o Sys-tem Card,'' Ope-nAI, Tech. Rep., Sep. 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 183--184
+Underfull \hbox (badness 1931) in paragraph at lines 189--190
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
-
-Underfull \hbox (badness 4316) in paragraph at lines 204--205
+[3]
+Underfull \hbox (badness 4316) in paragraph at lines 210--211
 []\OT1/cmr/m/n/10 K. Z. Liu, ``Ma-chine un-learn-ing in 2024,'' Stan-ford CS Blog, May 2024. [On-line]. Avail-able:
  []
 
-[3]
-Underfull \hbox (badness 1629) in paragraph at lines 234--235
+
+Underfull \hbox (badness 1629) in paragraph at lines 240--241
 \OT1/cmr/m/n/10 pra-nolol or hy-dro-cor-ti-sone in healthy women,'' \OT1/cmr/m/it/10 Psy-chol. Med.\OT1/cmr/m/n/10 , vol. 50, pp. 1148--1155, 2020, doi:
  []
 
@@ -560,21 +555,21 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `draft_report.out' has not changed.
-(rerunfilecheck)             Checksum: C637FDE353CE96ADEAC1745263A725AC;3550.
+(rerunfilecheck)             Checksum: 50305B711B86EFBD04A5BF134C72B7AD;4647.
  ) 
 Here is how much of TeX's memory you used:
- 21213 strings out of 467525
- 392148 string characters out of 5418983
- 798230 words of memory out of 5000000
- 49736 multiletter control sequences out of 15000+600000
+ 21224 strings out of 467525
+ 392325 string characters out of 5418983
+ 798276 words of memory out of 5000000
+ 49741 multiletter control sequences out of 15000+600000
  634837 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,104p,1260b,551s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,1260b,553s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on draft_report.pdf (6 pages, 122976 bytes).
+Output written on draft_report.pdf (6 pages, 124287 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
- 58 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 221 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 
