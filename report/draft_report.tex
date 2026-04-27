@@ -61,7 +61,7 @@ lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how
 Emulating this in context of a learnable model would have profound implications. 
 Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. 
 Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
-iiid
+
 
 \section{Literature Review}
 \subsection{machine unlearning}
@@ -77,6 +77,7 @@ The servey, "Machine Unlearning: A comprehensive servey" proides a high level cl
 unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.
 Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
 
+(todo: condense the following subsubsections into paragraphs, skip the detailed explaination and give them what it looks like)
 \subsubsection{Exact unlearning}  
 These methods aim to remove the influence of the forget set as if the model has been completely retrained.
 They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,
@@ -126,15 +127,7 @@ against the base completely retrained model.
 
 (population‑based, loss‑only membership inference attack implemented via logistic regression on losses of the unlearned model)
 
-
-
-
 (optimizations used on practice)
-
-
-
-
-
 
 
 \subsection{Memory consolidation and emotional memory therapy}
