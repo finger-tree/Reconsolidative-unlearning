@@ -241,7 +241,6 @@ OUTPUT draft_report.pdf
 INPUT ./draft_report.out
 INPUT ./draft_report.out
 OUTPUT draft_report.out
-INPUT /usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm

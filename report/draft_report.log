@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.27)  27 APR 2026 19:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.29)  29 APR 2026 11:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -595,23 +595,23 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 l.90 \subsubsection{Direct Fine-tuning}
                                         [1
 
-] [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+] [2] [3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 271--272
 []\OT1/cmr/m/n/10 OpenAI, ``GPT-4o Sys-tem Card,'' Ope-nAI, Tech. Rep., Sep. 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 248--249
+Underfull \hbox (badness 1931) in paragraph at lines 274--275
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
-[4]
-Underfull \hbox (badness 4316) in paragraph at lines 269--270
+
+Underfull \hbox (badness 4316) in paragraph at lines 295--296
 []\OT1/cmr/m/n/10 K. Z. Liu, ``Ma-chine un-learn-ing in 2024,'' Stan-ford CS Blog, May 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 1629) in paragraph at lines 299--300
+Underfull \hbox (badness 1629) in paragraph at lines 325--326
 \OT1/cmr/m/n/10 pra-nolol or hy-dro-cor-ti-sone in healthy women,'' \OT1/cmr/m/it/10 Psy-chol. Med.\OT1/cmr/m/n/10 , vol. 50, pp. 1148--1155, 2020, doi:
  []
 
@@ -621,21 +621,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `draft_report.out' has not changed.
-(rerunfilecheck)             Checksum: 4F714685A8BCB466B6D303059CDC26EC;4675.
+(rerunfilecheck)             Checksum: F672786A7E6AC901983387767D729943;4874.
  ) 
 Here is how much of TeX's memory you used:
- 21676 strings out of 476182
- 395561 string characters out of 5795595
- 1938975 words of memory out of 5000000
- 43257 multiletter control sequences out of 15000+600000
+ 21678 strings out of 476182
+ 395591 string characters out of 5795595
+ 1936975 words of memory out of 5000000
+ 43258 multiletter control sequences out of 15000+600000
  567503 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,12n,93p,1247b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,93p,1247b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_report.pdf (7 pages, 195700 bytes).
+Output written on draft_report.pdf (7 pages, 199182 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 228 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
- 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 272 PDF objects out of 1000 (max. 8388607)
+ 232 compressed objects within 3 object streams
+ 66 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

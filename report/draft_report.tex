@@ -191,10 +191,36 @@ $$
 
 emotional memory therapy (neurobiology)
 
+\subsection{Hopfield network, Associative memory modeling}
+Hopfield networks are originally inspired by the numerous stable states in a ferromagnet's spin configurations, or Ising spins.
+This model is adapted to fully interconnected neurons with numberous stable points, which is analogous to memory patterns. The encoding patterns
+are dictated by an interaction function to randomly update neurons based on the weights connected to it. Numerous improvements to It
+has since been made to it including:
 
-\subsection{associative memory modeling and unlearning}
-associative memory modeling (machine learning)
-unlearning (machine learning)
+Generalization of interaction function to $F(x) = exp(x)$,
+giving a n exponential storage capacty $N = 2^(d/2)$,
+
+maintaining exponential capacity with standard two-body synnaptic connections by adding one hidden layer (one input and one output),
+giving the same capacity in realistic neuron configurations.
+(cite)
+
+Generalizing interactoin function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads.
+(cite)
+
+Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour
+with an associated Energy function and lyponov function arguments.
+
+
+
+
+\subsection{Hippocampal index theory}
+The theory states that the hippocampal formation stores pointers to access memories in the outer cortex,
+as such the full context of the memory are integrated as one. These memories gradually stabilize in the cortex.
+Two proceses underly it's function: pattern seperation and pattern completion.
+
+Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, 
+by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus. It is computationally,
+simulated by hopfield networks, 
 
 \subsection{key problems and challenges}
 narrow down to specific problem,
