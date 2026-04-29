@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.29)  29 APR 2026 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.29)  29 APR 2026 17:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -615,7 +615,7 @@ Underfull \hbox (badness 1629) in paragraph at lines 341--342
 \OT1/cmr/m/n/10 pra-nolol or hy-dro-cor-ti-sone in healthy women,'' \OT1/cmr/m/it/10 Psy-chol. Med.\OT1/cmr/m/n/10 , vol. 50, pp. 1148--1155, 2020, doi:
  []
 
-[6] (./draft_report.aux)
+[6] [7] (./draft_report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -624,18 +624,18 @@ Package rerunfilecheck Info: File `draft_report.out' has not changed.
 (rerunfilecheck)             Checksum: FF0F8AD95BB80C8ECEBD6BEDB70E8DC1;5523.
  ) 
 Here is how much of TeX's memory you used:
- 21682 strings out of 476182
- 395671 string characters out of 5795595
- 1937975 words of memory out of 5000000
+ 21683 strings out of 476182
+ 395677 string characters out of 5795595
+ 1938975 words of memory out of 5000000
  43260 multiletter control sequences out of 15000+600000
  567503 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,12n,93p,1247b,556s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,1247b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_report.pdf (7 pages, 200908 bytes).
+Output written on draft_report.pdf (8 pages, 201397 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
- 241 compressed objects within 3 object streams
- 68 named destinations out of 1000 (max. 500000)
+ 285 PDF objects out of 1000 (max. 8388607)
+ 244 compressed objects within 3 object streams
+ 69 named destinations out of 1000 (max. 500000)
  229 words of extra memory for PDF output out of 10000 (max. 10000000)
 
