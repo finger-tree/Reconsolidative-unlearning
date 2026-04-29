@@ -204,13 +204,11 @@ maintaining exponential capacity with standard two-body synnaptic connections by
 giving the same capacity in realistic neuron configurations.
 (cite)
 
-Generalizing interactoin function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads.
+Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads.
 (cite)
 
 Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour
 with an associated Energy function and lyponov function arguments.
-
-
 
 
 \subsection{Hippocampal index theory}
@@ -219,11 +217,24 @@ as such the full context of the memory are integrated as one. These memories gra
 Two proceses underly it's function: pattern seperation and pattern completion.
 
 Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, 
-by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus. It is computationally,
-simulated by hopfield networks, 
+by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus. 
+
+Pattern seperation is where similar eperiences are orthogonalized into different memories
+
+
 
 \subsection{key problems and challenges}
-narrow down to specific problem,
+
+\subsubsection{Biological accuracy vs property emulation}
+When bridging the gap between structure of atomic scale to properties on the neural system level, biological accuracy, is often sacrificed
+for computaionala efficiency.
+
+\subsubsection{opposite problem nature of brain aligned memory systems}
+When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability 
+to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning.
+where utility is kept on the basis that the information in question is removed.
+
+
 
 \subsection{past work and state-of-the-art}
 what other work has been done on it or aspects relating to,
