@@ -1,8 +1,5 @@
 
 sudo apt update
-sudo apt install --no-install-recommends \
-    texlive-latex-base \
-    texlive-fonts-recommended \
-    texlive-latex-extra \
-    latexmk \
-    perl
+sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-extra-utils latexmk perl xzdec
+
+sudo apt-get update && sudo apt-get install -y texlive-bibtex-extra
