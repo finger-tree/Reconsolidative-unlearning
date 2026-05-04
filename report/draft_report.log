@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 MAY 2026 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 MAY 2026 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -509,7 +509,8 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
-) (./draft_report.aux)
+)
+No file draft_report.aux.
 \openout1 = `draft_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -530,7 +531,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -686,10 +686,10 @@ Package rerunfilecheck Info: Checksums for `draft_report.out':
 (rerunfilecheck)             After:  FF0F8AD95BB80C8ECEBD6BEDB70E8DC1;5523.
  ) 
 Here is how much of TeX's memory you used:
- 21907 strings out of 467525
- 401200 string characters out of 5418983
- 808486 words of memory out of 5000000
- 50402 multiletter control sequences out of 15000+600000
+ 21904 strings out of 467525
+ 401137 string characters out of 5418983
+ 808495 words of memory out of 5000000
+ 50401 multiletter control sequences out of 15000+600000
  637155 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,104p,1260b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
