@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 MAY 2026 22:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  4 MAY 2026 22:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -279,7 +279,20 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip70
 \f@nch@widthR=\skip71
 \@temptokenb=\toks26
-) (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+)
+
+/Users/ansen/development/Reconsolidative-unlearning/report/draft_report.tex:16: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \usepackage{fancyhdr}s
+                           
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/local/texlive/2026/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks27
 \pgfutil@tempdima=\dimen178
 \pgfutil@tempdimb=\dimen179
@@ -496,7 +509,8 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
-) (./draft_report.aux)
+)
+No file draft_report.aux.
 \openout1 = `draft_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -517,7 +531,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -572,10 +585,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 36.
- (./draft_report.out) (./draft_report.out)
 \@outlinefile=\write4
 \openout4 = `draft_report.out'.
 
+ [1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -583,16 +598,53 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+) [2]
 
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Warning: Citation `edps2025' on page 1 undefined on input line 51.
+
+
+LaTeX Warning: Citation `liu2024' on page 1 undefined on input line 51.
+
+
+LaTeX Warning: Citation `cao2015' on page 1 undefined on input line 53.
+
+
+LaTeX Warning: Citation `xu2023' on page 1 undefined on input line 54.
+
+
+LaTeX Warning: Citation `wang2024' on page 1 undefined on input line 54.
+
+
+LaTeX Warning: Citation `brunet2008' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `brunet2014' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `brunet2018' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `wright2021' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `kamboj2020' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ramsauer2020' on page 1 undefined on input line 62.
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.90 \subsubsection{Direct Fine-tuning}
                                         [1
 
-] [2] [3] [4]
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.138 
+       [2] [3] [4]
 Underfull \hbox (badness 10000) in paragraph at lines 287--288
 []\OT1/cmr/m/n/10 OpenAI, ``GPT-4o Sys-tem Card,'' Ope-nAI, Tech. Rep., Sep. 2024. [On-line]. Avail-able:
  []
@@ -617,22 +669,35 @@ Underfull \hbox (badness 1629) in paragraph at lines 341--342
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `draft_report.out' has not changed.
-(rerunfilecheck)             Checksum: FF0F8AD95BB80C8ECEBD6BEDB70E8DC1;5523.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `draft_report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `draft_report.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  FF0F8AD95BB80C8ECEBD6BEDB70E8DC1;5523.
  ) 
 Here is how much of TeX's memory you used:
- 21940 strings out of 467525
- 401727 string characters out of 5418983
- 809581 words of memory out of 5000000
- 50431 multiletter control sequences out of 15000+600000
+ 21904 strings out of 467525
+ 401137 string characters out of 5418983
+ 808495 words of memory out of 5000000
+ 50401 multiletter control sequences out of 15000+600000
  637155 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,104p,1260b,558s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_report.pdf (8 pages, 200859 bytes).
+Output written on draft_report.pdf (9 pages, 198807 bytes).
 PDF statistics:
- 285 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
+ 194 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
  69 named destinations out of 1000 (max. 500000)
- 229 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
