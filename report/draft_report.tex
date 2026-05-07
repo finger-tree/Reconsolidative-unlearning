@@ -13,7 +13,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{titlesec}
-\usepackage{fancyhdr}s
+\usepackage{fancyhdr}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usepackage{tabularx}
@@ -62,9 +62,10 @@ Emulating this in context of a learnable model would have profound implications.
 Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. 
 Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
 
-
 \section{Literature Review}
+
 \subsection{machine unlearning}
+
 \subsection{current machine unlearning models and techniques}
 The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
@@ -111,7 +112,6 @@ Input/Output-based unlearning focuses filtering the model's inputs or outputs wi
 TODO: only problems and directions in machine unlearning, 
 TODO: and machine unlearning verification methods, which one of that would you choose for your shit
 
-
 \subsection{Metric on machine unlearning}
 
 \subsubsection{NeuraIPS 2023 unlearning competition benchmark} 
@@ -128,7 +128,6 @@ against the base completely retrained model.
 (population‑based, loss‑only membership inference attack implemented via logistic regression on losses of the unlearned model)
 
 (optimizations used on practice)
-
 
 \subsection{Memory consolidation and emotional memory therapy}
 Memory consolidation is the process of gradual migration and stabilization of memory from the hippocampus to the outer cortex.
@@ -160,9 +159,7 @@ P(z_t = k \mid \mathbf{z}_{1:t-1}) \propto
 \end{cases}
 $$
 
-$$
-\mathcal{K}(\Delta \tau) = \frac{1}{\Delta \tau}
-$$
+$$\mathcal{K}(\Delta \tau) = \frac{1}{\Delta \tau}$$
 
 $$
 P(z_t = k \mid \mathcal{D}_{1:t}) \propto
@@ -170,24 +167,13 @@ P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \cdot
 P(z_t = k \mid \mathbf{z}_{1:t-1})
 $$
 
-$$
-P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1})
-=
-P(\mathbf{x}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \,
-P(r_t \mid \mathbf{x}_t, z_t = k, \mathcal{D}_{1:t-1})
-$$
+$$P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1})=P(\mathbf{x}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \,P(r_t \mid \mathbf{x}_t, z_t = k, \mathcal{D}_{1:t-1})$$
 
-$$
-\hat{r}_t = \sum_k P(z_t = k \mid \mathcal{D}_{1:t-1}) \, \mathbf{w}_k^\top \mathbf{x}_t
-$$
+$$\hat{r}_t = \sum_k P(z_t = k \mid \mathcal{D}_{1:t-1}) \, \mathbf{w}_k^\top \mathbf{x}_t$$
 
-$$
-\mathbf{w}_k \leftarrow \mathbf{w}_k + \eta \, P(z_t = k \mid \mathcal{D}_{1:t}) \, \mathbf{x}_t \, \delta_t
-$$
+$$\mathbf{w}_k \leftarrow \mathbf{w}_k + \eta \, P(z_t = k \mid \mathcal{D}_{1:t}) \, \mathbf{x}_t \, \delta_t$$
 
-$$
-\delta_t = r_t - \hat{r}_t
-$$
+$$\delta_t = r_t - \hat{r}_t$$
 
 emotional memory therapy (neurobiology)
 
@@ -209,7 +195,6 @@ Generalizing interaction function by making it differentiable in a propagation l
 
 Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour
 with an associated Energy function and lyponov function arguments.
-
 
 \subsection{Hippocampal index theory}
 The theory states that the hippocampal formation stores pointers to access memories in the outer cortex,
@@ -238,8 +223,6 @@ for computaionala efficiency.
 When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability 
 to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning.
 where utility is kept on the basis that the information in question is removed.
-
-
 
 \subsection{past work and state-of-the-art}
 what other work has been done on it or aspects relating to,
