@@ -6,4 +6,11 @@ what are they -> unlearning, accuracy and others. with MIA auditor and shit, so 
 -> make the 2023 unlearning pipeline, copy code from github, and try to run one which uses simple fine-tuning
 CASIA-SURF dataset -> reconstruct this set
 
-metric.py ->
+-> you are more focused on the basics
+
+-> you can't finish it in time, because you were bad, just don't be bad going forward ok? (-Arwin)
+
+-> I can't do anything -> just write the report without implementation, this is a final year project, not really needing you to create something normal, you just need to show that you've learnt enough
+-> you make the 5 minute video as bright as possible
+
+-> you complete the report with lots of details

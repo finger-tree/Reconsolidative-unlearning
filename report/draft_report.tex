@@ -41,63 +41,39 @@
 \setcounter{page}{1}
 
 \section{Abstract}
-Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. 
-Inspired by a distributive network able to cleanly target a memory and modify it, we investigate the practical models
-of associative memory and attempt to create a machine unlearning model, based on it's properties.
+Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. Inspired by a distributive network able to cleanly target a memory and modify it, we investigate the practical models of associative memory and attempt to create a machine unlearning model, based on it's properties.
 
 \section{Introduction}
-Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. 
-The most notable refers to the UK General Data Protection Regulation Article 17 (the right to forget), 
-protecting data ownership, consent, personal safety among others~\cite{edps2025,liu2024}. 
-This task is incredibly daunting due to the entangled sequential transformation during training, 
-akin to a one-way cryptographic function~\cite{cao2015}. To date, computationally acceptable solutions are mere 
-approximations with degrees of residual influence, while exact solutions are far from feasibly operational~\cite{xu2023,wang2024}.
+Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. The most notable refers to the UK General Data Protection Regulation Article 17 (the right to forget), protecting data ownership, consent, personal safety among others~\cite{edps2025,liu2024}. This task is incredibly daunting due to the entangled sequential transformation during training, akin to a one-way cryptographic function~\cite{cao2015}. To date, computationally acceptable solutions are mere approximations with degrees of residual influence, while exact solutions are far from feasibly operational~\cite{xu2023,wang2024}.
 
-Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory 
-therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic 
-lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.
-(todo: what you have done)
+Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.(todo: what you have done)
 
-Emulating this in context of a learnable model would have profound implications. 
-Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. 
-Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
+Emulating this in context of a learnable model would have profound implications. Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
 
 \section{Literature Review}
 
 \subsection{current machine unlearning models and techniques}
 The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
-The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions"
-Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.
-Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.
-Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
+The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions"Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
 
-The servey, "Machine Unlearning: A comprehensive servey" proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, 
-unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.
-Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
+The servey, "Machine Unlearning: A comprehensive servey" proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
 
 \paragraph{Exact unlearning}  
-These methods aim to remove the influence of the forget set as if the model has been completely retrained.
-They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,
-only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.
-SISA, ARCANE and others follow this methodology.
+These methods aim to remove the influence of the forget set as if the model has been completely retrained.They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.SISA, ARCANE and others follow this methodology.
 
 \paragraph{Approximate unlearning}
 Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
 
 \paragraph{Direct Fine-tuning}
-Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,
-akin to catastrophic forgetting in continual learning. Below are some examples:
+Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,akin to catastrophic forgetting in continual learning. Below are some examples:
 
-Gradient ascent (GA), additionally train a loss over the forget set using negative log-likelihood loss, 
-To maintain model accuracy, regularization loss over the retrain set is often used, like a gradient descent or KL divergence. 
+Gradient ascent (GA), additionally train a loss over the forget set using negative log-likelihood loss, To maintain model accuracy, regularization loss over the retrain set is often used, like a gradient descent or KL divergence. 
 
 Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
 
 \paragraph{Localized Parameter Modification}
-Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples:
-Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
-Locate-then-unlearn methods
+Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples: Representation engineering, like RMU, which redirects low layer forget set token to noise vector.Locate-then-unlearn methods
 
 \paragraph{Leveraging auxiliary models}
 Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
@@ -108,17 +84,7 @@ Input/Output-based unlearning focuses filtering the model's inputs or outputs wi
 \subsection{Metric on machine unlearning}
 
 \subsubsection{NeuraIPS 2023 unlearning competition benchmark} 
-The NeuraIPS 2023 competition is hosted on Kaggle, to address the technical challenges of machine unlearning. It aims to catalyse the use of
-efficient machine unlearning algorithms, as well promoting the standardization of unlearning benchmarks. This benchmark assesses the performance
-of approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility.
-
-The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point.
-It measures the change of distribution regarding other datapoints if one is leaked.
-$\Pr[\mathcal{M}(D) \in S] \leq e^{\varepsilon} \Pr[\mathcal{M}(D') \in S].$
-
-To reframe this measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned model
-against the base completely retrained model.
-
+The NeuraIPS 2023 competition is hosted on Kaggle, to address the technical challenges of machine unlearning. It aims to catalyse the use ofefficient machine unlearning algorithms, as well promoting the standardization of unlearning benchmarks. This benchmark assesses the performanceof approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility.The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point.It measures the change of distribution regarding other datapoints if one is leaked.$\Pr[\mathcal{M}(D) \in S] \leq e^{\varepsilon} \Pr[\mathcal{M}(D') \in S].$To reframe this measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned modelagainst the base completely retrained model.
 
 
 (population‑based, loss‑only membership inference attack implemented via logistic regression on losses of the unlearned model)
@@ -126,27 +92,22 @@ against the base completely retrained model.
 (optimizations used on practice)
 
 \subsection{Memory consolidation and emotional memory therapy}
-Memory consolidation is the process of gradual migration and stabilization of memory from the hippocampus to the outer cortex.
-It's understanding mainly comes from protein inhibitor experiments, where the hippocampal formation is found to have a central role in all forms of memories.
-This process is long thought to be permanent (synaptic lock theory), until it was disproven by a shock (unconditional stimulus US) and queue (conditional stimulus CS) experiment on rats.
-Protein inhibitors administered after the event of recalling a memory is shown to disrupt the memory permanently, this event is called reconsolidation, in which the memory is liable for update.
+Memory consolidation is the process of gradual migration and stabilization of memory from the hippocampus to the outer cortex. It's understanding mainly comes from protein inhibitor experiments, where the hippocampal formation is found to have a central role in all forms of memories. This process is long thought to be permanent (synaptic lock theory), until it was disproven by a shock (unconditional stimulus US) and queue (conditional stimulus CS) experiment on rats. Protein inhibitors administered after the event of recalling a memory is shown to disrupt the memory permanently, this event is called reconsolidation, in which the memory is liable for update.
 
-While reconsolidation is successfully implemented in treating emotional memory, it's replicability comes under question in other forms of memory, leading to several proposals to fix it.
-One theory of interest is latent cause theory, which incoporates observations from behavioral experiments, like conditioning, extinction, and renewal paradigms. It proposes that the brain learns
-the probability of an event generated by a latent cause, and memory is thus the association between them. It serves as a unifying theory for a wide range or observations following reconsolidation.
+While reconsolidation is successfully implemented in treating emotional memory, it's replicability comes under question in other forms of memory, leading to several proposals to fix it. One theory of interest is latent cause theory, which incoporates observations from behavioral experiments, like conditioning, extinction, and renewal paradigms. It proposes that the brain learns the probability of an event generated by a latent cause, and memory is thus the association between them. It serves as a unifying theory for a wide range or observations following reconsolidation.
 
-It models a three way model of three parts: CS given cause, US given cause, and cause given prior causes.
-CS given cause is drawn from the product normal distribution of it's expected values of that cause.
-US given cause id drawn from the normal distribution in the mean of the hebbian sum of weights and CS.
-cause given prior causes is drawn from a temporal kernal, which implements the continguity principle of temporal proximity infers cause proximity.
+It models a three way model of three parts: CS given cause, US given cause, and cause given prior causes. \\
 $
 P(\mathbf{x}_t \mid z_t = k, \mathbf{w}_k, \sigma_x^2) = \mathcal{N}(\mathbf{w}_k, \sigma_x^2 I)
 $
 
+CS given cause is drawn from the product normal distribution of it's expected values of that cause. \\
 $
 P(r_t \mid \mathbf{x}_t, z_t = k, \mathbf{w}_k, \sigma_r^2) = \mathcal{N}(\mathbf{w}_k^\top \mathbf{x}_t, \sigma_r^2)
 $
 
+US given cause id drawn from the normal distribution in the mean of the hebbian sum of weights and CS.
+cause given prior causes is drawn from a temporal kernal, which implements the continguity principle of temporal proximity infers cause proximity. \\
 $
 P(z_t = k \mid \mathbf{z}_{1:t-1}) \propto
 \begin{cases}

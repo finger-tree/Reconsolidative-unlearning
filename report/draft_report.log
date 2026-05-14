@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  7 MAY 2026 20:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  14 MAY 2026 22:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -593,26 +593,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.94 
+l.72 
       [1
 
 ] [2] [3]
-Underfull \hbox (badness 2529) in paragraph at lines 266--267
+Underfull \hbox (badness 2529) in paragraph at lines 227--228
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
 [4]
-Underfull \hbox (badness 4660) in paragraph at lines 284--285
+Underfull \hbox (badness 4660) in paragraph at lines 245--246
 []\OT1/cmr/m/n/10 [Authors], ``Re-assess-ment of the Hip-pocam-pal In-dex The-ory: A Syn-op-sis of the Present Ev-i-
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 284--285
+Underfull \hbox (badness 2293) in paragraph at lines 245--246
 \OT1/cmr/m/n/10 dence and Com-pu-ta-tional Mod-els,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 290--291
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 []\OT1/cmr/m/n/10 OpenAI, ``GPT-4o Sys-tem Card,'' Ope-nAI, Tech. Rep., Sep. 2024. [On-line]. Avail-able:
  []
 
@@ -620,14 +620,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 290--291
 pdfTeX warning (ext4): destination with the same identifier (name{cite.anthropic2024}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.292 \bibitem{anthropic2024}
+l.253 \bibitem{anthropic2024}
                              
-Underfull \hbox (badness 2529) in paragraph at lines 293--294
+Underfull \hbox (badness 2529) in paragraph at lines 254--255
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 314--315
+Underfull \hbox (badness 4316) in paragraph at lines 275--276
 []\OT1/cmr/m/n/10 K. Z. Liu, ``Ma-chine un-learn-ing in 2024,'' Stan-ford CS Blog, May 2024. [On-line]. Avail-able:
  []
 
@@ -650,7 +650,7 @@ Here is how much of TeX's memory you used:
  50432 multiletter control sequences out of 15000+600000
  637155 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,104p,1260b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,1260b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 Output written on draft_report.pdf (7 pages, 200723 bytes).
 PDF statistics:
