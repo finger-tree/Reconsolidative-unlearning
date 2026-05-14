@@ -1,13 +1,17 @@
 import torch
 import torch.nn as nn
+import matplotlib.pyplot as plt
 
 class GridCellLayer(nn.Module):
-    """Grid cell-like spatial encoding from entorhinal cortex"""
+    """Grid cell-like spatial encoding from entorhinal cortex
+    Input shape : torch.Size([1, 16, 32, 32])
+    Output shape: torch.Size([1, 16, 32, 32])
+    """
     def __init__(self, channels: int):
         super().__init__()
         self.channels = channels
         # Different spatial frequencies (like biological grid cells)
-        self.freq1 = nn.Conv2d(channels, channels//4, 1)
+        self.freq1 = nn.Conv2d(channels, channels//4, 1)    #(N, C, H, W)
         self.freq2 = nn.Conv2d(channels, channels//4, 1)
         self.freq3 = nn.Conv2d(channels, channels//4, 1)
         self.freq4 = nn.Conv2d(channels, channels//4, 1)
@@ -25,17 +29,6 @@ class GridCellLayer(nn.Module):
         y3 = torch.sin(self.freq3(x) + self.phase3)
         y4 = torch.sin(self.freq4(x) + self.phase4)
         return torch.cat([y1, y2, y3, y4], dim=1)
-    
 
-if __name__ == "__main__":
-    # show  grid cell patterns (testing)
-    import matplotlib.pyplot as plt
-    grid_layer = GridCellLayer(64)
-    input = torch.randn(1, 64, 32, 32)  # batch size 1, 64 channels, 32x32 spatial dimensions
-    output = grid_layer(input)
-    # Visualize the first few channels of the output
-    fig, axes = plt.subplots(2, 4, figsize=(12, 6))
-    for i in range(8):
-        axes[i//4, i%4].imshow(output[0, i].detach().numpy(), cmap='viridis')
-        axes[i//4, i%4].set_title(f'Channel {i}')
-    plt.show()
+
+ 

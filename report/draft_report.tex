@@ -64,8 +64,6 @@ Secondly, reconsolidation allows for memory alteration, allowing data dynamic mo
 
 \section{Literature Review}
 
-\subsection{machine unlearning}
-
 \subsection{current machine unlearning models and techniques}
 The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
@@ -78,17 +76,16 @@ The servey, "Machine Unlearning: A comprehensive servey" proides a high level cl
 unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.
 Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
 
-(todo: condense the following subsubsections into paragraphs, skip the detailed explaination and give them what it looks like)
-\subsubsection{Exact unlearning}  
+\paragraph{Exact unlearning}  
 These methods aim to remove the influence of the forget set as if the model has been completely retrained.
 They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,
 only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.
 SISA, ARCANE and others follow this methodology.
 
-\subsubsection{Approximate unlearning}
+\paragraph{Approximate unlearning}
 Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
 
-\subsubsection{Direct Fine-tuning}
+\paragraph{Direct Fine-tuning}
 Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,
 akin to catastrophic forgetting in continual learning. Below are some examples:
 
@@ -97,20 +94,16 @@ To maintain model accuracy, regularization loss over the retrain set is often us
 
 Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
 
-\subsubsection{Localized Parameter Modification}
+\paragraph{Localized Parameter Modification}
 Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples:
 Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
 Locate-then-unlearn methods
 
-\subsubsection{Leveraging auxiliary models}
+\paragraph{Leveraging auxiliary models}
 Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
 
-\subsubsection{Input/Output-based unlearning}
+\paragraph{Input/Output-based unlearning}
 Input/Output-based unlearning focuses filtering the model's inputs or outputs without changing the core model to achieve unlearning on the forget set.
-
-
-TODO: only problems and directions in machine unlearning, 
-TODO: and machine unlearning verification methods, which one of that would you choose for your shit
 
 \subsection{Metric on machine unlearning}
 
@@ -121,9 +114,12 @@ of approximated unlearning algorithms on classification models. It has three met
 
 The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point.
 It measures the change of distribution regarding other datapoints if one is leaked.
-$$\Pr[\mathcal{M}(D) \in S] \leq e^{\varepsilon} \Pr[\mathcal{M}(D') \in S].$$
-Reframing the problem to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned model
+$\Pr[\mathcal{M}(D) \in S] \leq e^{\varepsilon} \Pr[\mathcal{M}(D') \in S].$
+
+To reframe this measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned model
 against the base completely retrained model.
+
+
 
 (population‑based, loss‑only membership inference attack implemented via logistic regression on losses of the unlearned model)
 
@@ -143,37 +139,37 @@ It models a three way model of three parts: CS given cause, US given cause, and 
 CS given cause is drawn from the product normal distribution of it's expected values of that cause.
 US given cause id drawn from the normal distribution in the mean of the hebbian sum of weights and CS.
 cause given prior causes is drawn from a temporal kernal, which implements the continguity principle of temporal proximity infers cause proximity.
-$$
+$
 P(\mathbf{x}_t \mid z_t = k, \mathbf{w}_k, \sigma_x^2) = \mathcal{N}(\mathbf{w}_k, \sigma_x^2 I)
-$$
+$
 
-$$
+$
 P(r_t \mid \mathbf{x}_t, z_t = k, \mathbf{w}_k, \sigma_r^2) = \mathcal{N}(\mathbf{w}_k^\top \mathbf{x}_t, \sigma_r^2)
-$$
+$
 
-$$
+$
 P(z_t = k \mid \mathbf{z}_{1:t-1}) \propto
 \begin{cases}
 \sum_{t' < t} \mathcal{K}(\tau(t) - \tau(t')) \, \mathbb{I}[z_{t'} = k] & \text{(existing cause)} \\
 \alpha & \text{(new cause)}
 \end{cases}
-$$
+$
 
-$$\mathcal{K}(\Delta \tau) = \frac{1}{\Delta \tau}$$
+$\mathcal{K}(\Delta \tau) = \frac{1}{\Delta \tau}$
 
-$$
+$
 P(z_t = k \mid \mathcal{D}_{1:t}) \propto
 P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \cdot
 P(z_t = k \mid \mathbf{z}_{1:t-1})
-$$
+$
 
-$$P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1})=P(\mathbf{x}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \,P(r_t \mid \mathbf{x}_t, z_t = k, \mathcal{D}_{1:t-1})$$
+$P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1})=P(\mathbf{x}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \,P(r_t \mid \mathbf{x}_t, z_t = k, \mathcal{D}_{1:t-1})$
 
-$$\hat{r}_t = \sum_k P(z_t = k \mid \mathcal{D}_{1:t-1}) \, \mathbf{w}_k^\top \mathbf{x}_t$$
+$\hat{r}_t = \sum_k P(z_t = k \mid \mathcal{D}_{1:t-1}) \, \mathbf{w}_k^\top \mathbf{x}_t$
 
-$$\mathbf{w}_k \leftarrow \mathbf{w}_k + \eta \, P(z_t = k \mid \mathcal{D}_{1:t}) \, \mathbf{x}_t \, \delta_t$$
+$\mathbf{w}_k \leftarrow \mathbf{w}_k + \eta \, P(z_t = k \mid \mathcal{D}_{1:t}) \, \mathbf{x}_t \, \delta_t$
 
-$$\delta_t = r_t - \hat{r}_t$$
+$\delta_t = r_t - \hat{r}_t$
 
 emotional memory therapy (neurobiology)
 
@@ -264,7 +260,31 @@ Future work - any problems that could be fixed, or scope for improvement (develo
 
 \section{References}
 
-\begin{thebibliography}{26}
+\begin{thebibliography}{}
+
+\bibitem{anthropic2024}
+Anthropic, ``Claude 3.5 Technical Report,'' Anthropic, Tech. Rep., Oct. 2024. [Online]. Available: https://www.anthropic.com/news/claude-3-5-sonnet
+
+\bibitem{liu2024survey}
+Y. Liu et al., ``A Comprehensive Survey of Machine Unlearning Techniques for Large Language Models,'' arXiv preprint arXiv:2405.07406, May 2024. [Online]. Available: https://arxiv.org/pdf/2405.07406
+
+\bibitem{gershman2017computational}
+S. J. Gershman, M. H. Monfils, K. A. Norman, and Y. Niv, ``The computational nature of memory modification,'' *eLife*, vol. 6, p. e23763, Mar. 2017, doi: 10.7554/eLife.23763. Erratum in: *eLife*, vol. 6, p. e28693, May 2017, doi: 10.7554/eLife.28693. [Online]. Available: https://pmc.ncbi.nlm.nih.gov/articles/PMC5391211/
+
+\bibitem{bourtoule2021sisa}
+L. Bourtoule et al., ``Machine Unlearning,'' in *Proc. 38th Int. Conf. Mach. Learn. (ICML)*, 2021, arXiv:1912.03817. [Online]. Available: https://arxiv.org/pdf/1912.03817
+
+\bibitem{mcgaugh2000memory}
+J. L. McGaugh, ``Memory--a century of consolidation,'' *Science*, vol. 287, no. 5451, pp. 248--251, Jan. 2000.
+
+\bibitem{spens2023generative}
+E. Spens and N. Burgess, ``A generative model of memory construction and consolidation,'' *Nat. Hum. Behav.*, 2023.
+
+\bibitem{arxiv250816651}
+[Authors], ``Reassessment of the Hippocampal Index Theory: A Synopsis of the Present Evidence and Computational Models,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [Online]. Available: https://arxiv.org/abs/2508.16651
+
+
+% ### 
 
 \bibitem{openai2024}
 OpenAI, ``GPT-4o System Card,'' OpenAI, Tech. Rep., Sep. 2024. [Online]. Available: https://openai.com/index/gpt-4o-system-card/
@@ -368,9 +388,12 @@ S.~K.~Gundavarapu, S.~Agarwal, A.~Arora, and C.~T.~Jagadeeshaiah, ``Machine unle
 \bibitem{ramsauer2020}
 H.~Ramsauer \emph{et al.}, ``Hopfield networks is all you need,'' \emph{arXiv preprint arXiv:2008.02217}, 2020.
 
+
+
 \end{thebibliography}
 
 \appendix
+
 \section{Appendix}
 
 \end{document}

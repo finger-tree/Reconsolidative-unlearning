@@ -1,0 +1,9 @@
+you want to test, what are you going to test
+-> unlearning algorithm -> using 2023 metric ->
+what are they -> unlearning, accuracy and others. with MIA auditor and shit, so you want to copy the code and make it your own, or try to explain how it works, you just 
+=> want a pipeline to test different unlearning algorithms which makes another model (modify a classification model) with a shorter amount of time, while retraining accuracy on the old dataset
+
+-> make the 2023 unlearning pipeline, copy code from github, and try to run one which uses simple fine-tuning
+CASIA-SURF dataset -> reconstruct this set
+
+metric.py ->

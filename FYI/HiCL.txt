@@ -1,0 +1,32 @@
+evaluation.py
+l.py
+train_and_analyze.py
+train_hipppocampal_moe.py
+train_hippocampal_optimal_meo.py
+train_tinyimagenet_lenet_hippocampal.py
+train_tinyimagenet_v4_deep_sparse.py
+train_tinyImagenet_v7_n_model.py
+
+-> 
+-> 
+
+LEC -> feature extractor
+
+DG  -> pattern separation, sparse encoding
+CA3 -> pattern completion, sequence learning
+CA1 -> memory encoding, integration
+
+forgetting mechanism (to incorporate into continual learning)
+    models on how the brain forgets memory (suppress memory)
+    -> forgetting cells signals engrams 
+        -> synaptic structure change/demotes memory
+        https://pmc.ncbi.nlm.nih.gov/articles/PMC5657245/
+
+    -> neurogenesis based (shelved)
+        -> new neurons in hippocampus overwrites/integrate with memory
+        https://www.science.org/doi/10.1126/science.1248903
+
+    -> interference and motivated forgetting 
+        -> retrival based unlearning (your focus)
+        https://www.sciencedirect.com/science/article/pii/S1364661314000746
+
