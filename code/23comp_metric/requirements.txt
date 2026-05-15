@@ -1,0 +1,20 @@
+# absl-py
+# numpy
+# torch 
+# tensorflow
+
+# absl-py
+# numpy<2.0.0          # Important: TensorFlow is often incompatible with NumPy 2.x
+# torch>=2.3.0
+# tensorflow
+
+absl-py
+torch
+# >=2.3.0
+scikit-learn
+numpy
+torchvision
+# tensorflow-macos
+# tensorflow-metal
+
+

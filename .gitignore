@@ -36,3 +36,6 @@ dist/
 # Ignore environment files
 .env
 *.env
+
+# Ignore all data inside data
+**/data/**

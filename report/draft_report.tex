@@ -55,12 +55,12 @@ Emulating this in context of a learnable model would have profound implications.
 \subsection{current machine unlearning models and techniques}
 The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
 
-The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions"Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
+The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions" \cite{geng2025llmunlearning} Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
 
-The servey, "Machine Unlearning: A comprehensive servey" proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
+The servey, "Machine Unlearning: A comprehensive servey" \cite{liu2024survey} proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
 
 \paragraph{Exact unlearning}  
-These methods aim to remove the influence of the forget set as if the model has been completely retrained.They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity.SISA, ARCANE and others follow this methodology.
+These methods aim to remove the influence of the forget set as if the model has been completely retrained.They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity. SISA \cite{bourtoule2021sisa}, ARCANE \cite{arcane2022} and others follow this methodology.
 
 \paragraph{Approximate unlearning}
 Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
@@ -73,7 +73,7 @@ Gradient ascent (GA), additionally train a loss over the forget set using negati
 Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
 
 \paragraph{Localized Parameter Modification}
-Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples: Representation engineering, like RMU, which redirects low layer forget set token to noise vector.Locate-then-unlearn methods
+Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples: Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
 
 \paragraph{Leveraging auxiliary models}
 Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
@@ -94,7 +94,7 @@ The NeuraIPS 2023 competition is hosted on Kaggle, to address the technical chal
 \subsection{Memory consolidation and emotional memory therapy}
 Memory consolidation is the process of gradual migration and stabilization of memory from the hippocampus to the outer cortex. It's understanding mainly comes from protein inhibitor experiments, where the hippocampal formation is found to have a central role in all forms of memories. This process is long thought to be permanent (synaptic lock theory), until it was disproven by a shock (unconditional stimulus US) and queue (conditional stimulus CS) experiment on rats. Protein inhibitors administered after the event of recalling a memory is shown to disrupt the memory permanently, this event is called reconsolidation, in which the memory is liable for update.
 
-While reconsolidation is successfully implemented in treating emotional memory, it's replicability comes under question in other forms of memory, leading to several proposals to fix it. One theory of interest is latent cause theory, which incoporates observations from behavioral experiments, like conditioning, extinction, and renewal paradigms. It proposes that the brain learns the probability of an event generated by a latent cause, and memory is thus the association between them. It serves as a unifying theory for a wide range or observations following reconsolidation.
+While reconsolidation is successfully implemented in treating emotional memory, it's replicability comes under question in other forms of memory, leading to several proposals to fix it. One theory of interest is latent cause theory \cite{gershman2017computational}, which incoporates observations from behavioral experiments, like conditioning, extinction, and renewal paradigms. It proposes that the brain learns the probability of an event generated by a latent cause, and memory is thus the association between them. It serves as a unifying theory for a wide range or observations following reconsolidation.
 
 It models a three way model of three parts: CS given cause, US given cause, and cause given prior causes. \\
 $
@@ -116,29 +116,9 @@ P(z_t = k \mid \mathbf{z}_{1:t-1}) \propto
 \end{cases}
 $
 
-$\mathcal{K}(\Delta \tau) = \frac{1}{\Delta \tau}$
-
-$
-P(z_t = k \mid \mathcal{D}_{1:t}) \propto
-P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \cdot
-P(z_t = k \mid \mathbf{z}_{1:t-1})
-$
-
-$P(\mathcal{D}_t \mid z_t = k, \mathcal{D}_{1:t-1})=P(\mathbf{x}_t \mid z_t = k, \mathcal{D}_{1:t-1}) \,P(r_t \mid \mathbf{x}_t, z_t = k, \mathcal{D}_{1:t-1})$
-
-$\hat{r}_t = \sum_k P(z_t = k \mid \mathcal{D}_{1:t-1}) \, \mathbf{w}_k^\top \mathbf{x}_t$
-
-$\mathbf{w}_k \leftarrow \mathbf{w}_k + \eta \, P(z_t = k \mid \mathcal{D}_{1:t}) \, \mathbf{x}_t \, \delta_t$
-
-$\delta_t = r_t - \hat{r}_t$
-
-emotional memory therapy (neurobiology)
 
 \subsection{Hopfield network, Associative memory modeling}
-Hopfield networks are originally inspired by the numerous stable states in a ferromagnet's spin configurations, or Ising spins.
-This model is adapted to fully interconnected neurons with numberous stable points, which is analogous to memory patterns. The encoding patterns
-are dictated by an interaction function to randomly update neurons based on the weights connected to it. Numerous improvements to It
-has since been made to it including:
+Hopfield networks are originally inspired by the numerous stable states in a ferromagnet's spin configurations, or Ising spins. This model is adapted to fully interconnected neurons where an update function changes a neurons' state based on the weighted sum of the others. Unlike typical forward networks, this network is fully recurrent and it's memory reliant on the convergence of the update function. These stable points are analogous to memory patterns. The encoded patterns, or the specific stable points, are dictated by an interaction function to randomly update neurons based on the weights connected to it. Numerous improvements to It has since been made to it including:
 
 Generalization of interaction function to $F(x) = exp(x)$,
 giving a n exponential storage capacty $N = 2^(d/2)$,
@@ -147,46 +127,34 @@ maintaining exponential capacity with standard two-body synnaptic connections by
 giving the same capacity in realistic neuron configurations.
 (cite)
 
-Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads.
-(cite)
+Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads. The transformer equivalence states that if a V and K 
+\cite{ramsauer2020}
 
 Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour
 with an associated Energy function and lyponov function arguments.
 
 \subsection{Hippocampal index theory}
-The theory states that the hippocampal formation stores pointers to access memories in the outer cortex,
-as such the full context of the memory are integrated as one. These memories gradually stabilize in the cortex.
-Two proceses underly it's function: pattern seperation and pattern completion.
+The theory states that the hippocampal formation stores pointers to access memories in the outer cortex, as such the full context of the memory are integrated as one. These memories gradually stabilize in the cortex. Two proceses underly it's function: pattern seperation and pattern completion. Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus.  Pattern seperation is where similar experiences are orthogonalized into different memories. Originating from EC,  it is routed to DS (Dentate Gyrus) for sparse encoding, then it is stored in CA3, then routed through CA to the cortical memories.
 
-Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, 
-by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus. 
-
-Pattern seperation is where similar experiences are orthogonalized into different memories. Originating from EC, 
-it is routed to DS (Dentate Gyrus) for sparse encoding, then it is stored in CA3, then routed through CA1 to the cortical memories.
-
-These two processes often complement each other in the Hippocampus, where pattern completion is mainly attributed to 
-DG-CA3 associations, and pattern completion CA3-CA1 and CA1 to subiculum connections. This is supported by activity observations, in anterior hippocampus,
-where it is more active in the initial stages of information extraction; and activity in posterior hippocampus, which is more active in maintaining representations.
+These two processes often complement each other in the Hippocampus, where pattern completion is mainly attributed to DG-CA3 associations, and pattern completion CA3-CA1 and CA1 to subiculum connections. This is supported by activity observations, in anterior hippocampus, where it is more active in the initial stages of information extraction; and activity in posterior hippocampus, which is more active in maintaining representations.
 
 This is further supported by the discovery of engram cells in the hippocampus, where they only repond to a certain memory/association.
 
 \subsection{key problems and challenges}
 
 \subsubsection{Biological accuracy vs property emulation}
-When bridging the gap between structure of atomic scale to properties on the neural system level, biological accuracy, is often sacrificed
-for computaionala efficiency.
+When bridging the gap between structure of atomic scale to properties on the neural system level, biological accuracy, is often sacrificed for computaionala efficiency.
 
 \subsubsection{opposite problem nature of brain aligned memory systems}
-When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability 
-to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning.
-where utility is kept on the basis that the information in question is removed.
+When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning. where utility is kept on the basis that the information in question is removed.
 
 \subsection{past work and state-of-the-art}
+(HICL achieved FLOPS advantage and performance advantage over other continual learning models)
 what other work has been done on it or aspects relating to,
 key technologies and state-of-the-art
 
 \section{System requirements and specification}
-requirements gathering and prioritisation
+requirements gathering and prioritization
 
 appropriate software development life cycle methodologies for development projects
 
@@ -215,16 +183,16 @@ discuss results and show insights into why you got that result
 
 Overall project conclusions (how did you achieve the project objectives set at the beginning?)
 
-Should be readable almost in isolation (reader should get a good understanding of what was achieved)
+No practical system was achieved, we explored a wide range of literature in biological memory and computational models to exlpain biological memory phenomenon.
 
-Future work - any problems that could be fixed, or scope for improvement (development), or interesting ways forward (research)
+Future work includes exploration of components of brain forgetting mechanism to modify continual learning into continual learning and unlearning models.
 
 \section{References}
 
 \begin{thebibliography}{}
 
-\bibitem{anthropic2024}
-Anthropic, ``Claude 3.5 Technical Report,'' Anthropic, Tech. Rep., Oct. 2024. [Online]. Available: https://www.anthropic.com/news/claude-3-5-sonnet
+\bibitem{geng2025llmunlearning}
+J. Geng et al., ``A Comprehensive Survey of Machine Unlearning Techniques for Large Language Models: Methods, Challenges and Future Directions,'' arXiv preprint arXiv:2503.01854, 2025. [Online]. Available: https://arxiv.org/abs/2503.01854
 
 \bibitem{liu2024survey}
 Y. Liu et al., ``A Comprehensive Survey of Machine Unlearning Techniques for Large Language Models,'' arXiv preprint arXiv:2405.07406, May 2024. [Online]. Available: https://arxiv.org/pdf/2405.07406
@@ -235,6 +203,12 @@ S. J. Gershman, M. H. Monfils, K. A. Norman, and Y. Niv, ``The computational nat
 \bibitem{bourtoule2021sisa}
 L. Bourtoule et al., ``Machine Unlearning,'' in *Proc. 38th Int. Conf. Mach. Learn. (ICML)*, 2021, arXiv:1912.03817. [Online]. Available: https://arxiv.org/pdf/1912.03817
 
+\bibitem{arcane2022}
+H.~Yan, X.~Li, Z.~Guo, H.~Li, F.~Li, and X.~Lin, 
+``ARCANE: An efficient architecture for exact machine unlearning,'' 
+in \emph{Proceedings of the 31st International Joint Conference on Artificial Intelligence (IJCAI)}, 
+2022, pp. 4006--4013.
+
 \bibitem{mcgaugh2000memory}
 J. L. McGaugh, ``Memory--a century of consolidation,'' *Science*, vol. 287, no. 5451, pp. 248--251, Jan. 2000.
 
@@ -244,23 +218,10 @@ E. Spens and N. Burgess, ``A generative model of memory construction and consoli
 \bibitem{arxiv250816651}
 [Authors], ``Reassessment of the Hippocampal Index Theory: A Synopsis of the Present Evidence and Computational Models,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [Online]. Available: https://arxiv.org/abs/2508.16651
 
-
 % ### 
-
-\bibitem{openai2024}
-OpenAI, ``GPT-4o System Card,'' OpenAI, Tech. Rep., Sep. 2024. [Online]. Available: https://openai.com/index/gpt-4o-system-card/
 
 \bibitem{anthropic2024}
 Anthropic, ``Claude 3.5 Technical Report,'' Anthropic, Tech. Rep., Oct. 2024. [Online]. Available: https://www.anthropic.com/news/claude-3-5-sonnet
-
-\bibitem{meta2024}
-Meta AI, ``Llama 3.1-405B Release Notes and System Card,'' Meta AI, Tech. Rep., Jul. 2024. [Online]. Available: https://ai.meta.com/blog/meta-llama-3-1/
-
-\bibitem{deepmind2024}
-Google DeepMind, ``Gemini 1.5 Pro Technical Report,'' Google DeepMind, Tech. Rep., Aug. 2024. [Online]. Available: https://deepmind.google/technologies/gemini/report/
-
-\bibitem{touvron2023}
-A.~Touvron \emph{et al.}, ``Llama 2: Open foundation and fine-tuned chat models,'' Meta AI, arXiv:2307.09288v3, Jul. 2023 (updated 2024). [Online]. Available: https://arxiv.org/abs/2307.09288
 
 \bibitem{bourtoule2021}
 C.~Bourtoule \emph{et al.}, ``Machine unlearning,'' in \emph{Proc. IEEE Symp. Security Privacy (SP)}, San Francisco, CA, USA, 2021, pp. 141--159, doi: 10.1109/SP40001.2021.00092.
@@ -358,3 +319,8 @@ H.~Ramsauer \emph{et al.}, ``Hopfield networks is all you need,'' \emph{arXiv pr
 \section{Appendix}
 
 \end{document}
+
+
+
+
+

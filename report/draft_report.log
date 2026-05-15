@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  14 MAY 2026 22:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  15 MAY 2026 11:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -496,11 +496,7 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count334
-) (./draft_report.aux
-
-LaTeX Warning: Label `anthropic2024' multiply defined.
-
-)
+) (./draft_report.aux)
 \openout1 = `draft_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -596,38 +592,23 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 l.72 
       [1
 
-] [2] [3]
-Underfull \hbox (badness 2529) in paragraph at lines 227--228
-[]\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
- []
-
-[4]
-Underfull \hbox (badness 4660) in paragraph at lines 245--246
+] [2] [3] [4]
+Underfull \hbox (badness 4660) in paragraph at lines 219--220
 []\OT1/cmr/m/n/10 [Authors], ``Re-assess-ment of the Hip-pocam-pal In-dex The-ory: A Syn-op-sis of the Present Ev-i-
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 245--246
+Underfull \hbox (badness 2293) in paragraph at lines 219--220
 \OT1/cmr/m/n/10 dence and Com-pu-ta-tional Mod-els,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
-[]\OT1/cmr/m/n/10 OpenAI, ``GPT-4o Sys-tem Card,'' Ope-nAI, Tech. Rep., Sep. 2024. [On-line]. Avail-able:
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{cite.anthropic2024}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.253 \bibitem{anthropic2024}
-                             
-Underfull \hbox (badness 2529) in paragraph at lines 254--255
+Underfull \hbox (badness 2529) in paragraph at lines 224--225
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 275--276
+Underfull \hbox (badness 4316) in paragraph at lines 236--237
 []\OT1/cmr/m/n/10 K. Z. Liu, ``Ma-chine un-learn-ing in 2024,'' Stan-ford CS Blog, May 2024. [On-line]. Avail-able:
  []
 
@@ -636,26 +617,22 @@ Underfull \hbox (badness 4316) in paragraph at lines 275--276
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `draft_report.out' has not changed.
 (rerunfilecheck)             Checksum: 2F33522EA541382AA46A24524A5D5472;4220.
  ) 
 Here is how much of TeX's memory you used:
- 21939 strings out of 467525
- 401737 string characters out of 5418983
- 808864 words of memory out of 5000000
- 50432 multiletter control sequences out of 15000+600000
+ 21935 strings out of 467525
+ 401703 string characters out of 5418983
+ 809768 words of memory out of 5000000
+ 50430 multiletter control sequences out of 15000+600000
  637155 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,104p,1260b,559s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,1260b,560s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_report.pdf (7 pages, 200723 bytes).
+Output written on draft_report.pdf (7 pages, 199623 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 67 named destinations out of 1000 (max. 500000)
+ 262 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
  173 words of extra memory for PDF output out of 10000 (max. 10000000)
 
