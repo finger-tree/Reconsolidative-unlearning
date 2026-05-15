@@ -120,18 +120,13 @@ $
 \subsection{Hopfield network, Associative memory modeling}
 Hopfield networks are originally inspired by the numerous stable states in a ferromagnet's spin configurations, or Ising spins. This model is adapted to fully interconnected neurons where an update function changes a neurons' state based on the weighted sum of the others. Unlike typical forward networks, this network is fully recurrent and it's memory reliant on the convergence of the update function. These stable points are analogous to memory patterns. The encoded patterns, or the specific stable points, are dictated by an interaction function to randomly update neurons based on the weights connected to it. Numerous improvements to It has since been made to it including:
 
-Generalization of interaction function to $F(x) = exp(x)$,
-giving a n exponential storage capacty $N = 2^(d/2)$,
+Generalization of interaction function to $F(x) = exp(x)$, giving a n exponential storage capacty $N = 2^(d/2)$,
 
-maintaining exponential capacity with standard two-body synnaptic connections by adding one hidden layer (one input and one output),
-giving the same capacity in realistic neuron configurations.
-(cite)
+maintaining exponential capacity with standard two-body synnaptic connections by adding one hidden layer (one input and one output), giving the same capacity in realistic neuron configurations.(cite)
 
-Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads. The transformer equivalence states that if a V and K 
-\cite{ramsauer2020}
+Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads. The transformer equivalence states that if learned Q, K, V projects the query (input pattern), key (the current pattern), and value (the result pattern after going through update), the modern hopfield network is equivalent to an attention head in a transformer. \cite{ramsauer2020}
 
-Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour
-with an associated Energy function and lyponov function arguments.
+Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour with an associated Energy function and lyponov function arguments about it's properties, convergent or otherwise.
 
 \subsection{Hippocampal index theory}
 The theory states that the hippocampal formation stores pointers to access memories in the outer cortex, as such the full context of the memory are integrated as one. These memories gradually stabilize in the cortex. Two proceses underly it's function: pattern seperation and pattern completion. Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus.  Pattern seperation is where similar experiences are orthogonalized into different memories. Originating from EC,  it is routed to DS (Dentate Gyrus) for sparse encoding, then it is stored in CA3, then routed through CA to the cortical memories.

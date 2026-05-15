@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  15 MAY 2026 11:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.1)  15 MAY 2026 11:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -593,22 +593,22 @@ l.72
       [1
 
 ] [2] [3] [4]
-Underfull \hbox (badness 4660) in paragraph at lines 219--220
+Underfull \hbox (badness 4660) in paragraph at lines 214--215
 []\OT1/cmr/m/n/10 [Authors], ``Re-assess-ment of the Hip-pocam-pal In-dex The-ory: A Syn-op-sis of the Present Ev-i-
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 219--220
+Underfull \hbox (badness 2293) in paragraph at lines 214--215
 \OT1/cmr/m/n/10 dence and Com-pu-ta-tional Mod-els,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 2529) in paragraph at lines 224--225
+Underfull \hbox (badness 2529) in paragraph at lines 219--220
 []\OT1/cmr/m/n/10 Anthropic, ``Claude 3.5 Tech-ni-cal Re-port,'' An-thropic, Tech. Rep., Oct. 2024. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 236--237
+Underfull \hbox (badness 4316) in paragraph at lines 231--232
 []\OT1/cmr/m/n/10 K. Z. Liu, ``Ma-chine un-learn-ing in 2024,'' Stan-ford CS Blog, May 2024. [On-line]. Avail-able:
  []
 
@@ -629,7 +629,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  84i,11n,104p,1260b,560s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft_report.pdf (7 pages, 199623 bytes).
+Output written on draft_report.pdf (7 pages, 200056 bytes).
 PDF statistics:
  262 PDF objects out of 1000 (max. 8388607)
  222 compressed objects within 3 object streams
