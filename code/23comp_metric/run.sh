@@ -12,9 +12,10 @@ python -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
-pip install git+https://github.com/google-deepmind/xmanager.git
-# xmanager launch.py
-# # python launch.py
+# pip install git+https://github.com/google-deepmind/xmanager.git
+pip install xmanager
+xmanager launch.py
+# python launch.py
 
 
 python -m main \
