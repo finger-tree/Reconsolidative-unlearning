@@ -138,15 +138,35 @@ class SURFDataset(data.Dataset):
 
     #TODO: change page and .txt names to include all three
     def _load_labels(self, tuples=()): 
-        """Load and process labels from Age_Gender.txt"""
-        labels_csv = np.loadtxt(
-            os.path.join(self.path, 'Age_Gender.txt'),
-            dtype={
-                'names': ('id', 'age', 'gender'),
-                'formats': ('S11', 'i4', 'S1'),
-            },
-            delimiter=' ',
-        )
+        """Load and process labels from all text files"""
+
+        # 1. Define the exact file format schema
+        file_dtype = {
+            'names': ('id', 'age', 'gender'),
+            'formats': ('S11', 'i4', 'S1'),
+        }
+
+        # 2. Find all text files in the directory
+        file_pattern = os.path.join(self.path, '*.txt')
+        all_files = glob.glob(file_pattern)
+
+        # 3. Load each file into a list (drop any txt, and it will read it as file_dtype format)
+        arrays_list = []
+
+        for file_path in all_files:
+            # Open the file using the path string
+            with open(file_path, 'r') as f:
+                # Filter the lines directly from the open file object
+                valid_lines = [line for line in f if len(line.strip().split()) == 3]
+            
+            # If the file had valid lines, load them and append the array to our list
+            if valid_lines:
+                file_array = np.loadtxt(valid_lines, dtype=file_dtype, delimiter=' ')
+                arrays_list.append(file_array)
+
+        # 4. Combine them into a single structured array
+        labels_csv = np.concatenate(arrays_list)
+
 
         # Ensure no duplicate IDs
         users = np.array([u.decode('utf-8') for u in np.unique(labels_csv['id'])])
@@ -171,27 +191,26 @@ class SURFDataset(data.Dataset):
 
     def _load_examples(self):
         """Load all image paths and associated metadata"""
-        data_path = os.path.join(self.path, 'WBackground')
+        pattern = os.path.join(self.path, '*', '*', '*', 'color', '*.jpg')
 
-        for f in sorted(glob.glob(os.path.join(data_path, '*/*'))):
-            person_id = f.split('/')[-1]
+        for img_path in sorted(glob.glob(pattern)):
+            # Normalize so splitting on os.sep is reliable across platforms
+            parts = os.path.normpath(img_path).split(os.sep)
+    
+            # parts[-1] = filename, parts[-2] = 'color', parts[-3] = any_dir,
+            # parts[-4] = person_id, parts[-5] = any_dir (top-level)
+            person_id = parts[-4]
+            image = io.read_image(img_path)
+            image = T.Resize((self.width, self.height))(image)
 
-            # Skip if person not in labels
-            if person_id not in self.labels:
-                continue
-
-            for img_path in sorted(glob.glob(os.path.join(f, 'real.rssdk', 'color', '*.jpg'))):
-                image = io.read_image(img_path)
-                image = T.Resize((self.width, self.height))(image)
-
-                self.examples.append({
-                    'image': image,
-                    'raw_image': image.clone(),   # keep a copy of original resized image
-                    'id': person_id,              # keep as string for readability
-                    'gender': self.labels[person_id][2],
-                    'age_group': self.labels[person_id][0],
-                    'age': self.labels[person_id][1],
-                })
+            self.examples.append({
+                'image': image,
+                'raw_image': image.clone(),   # keep a copy of original resized image
+                'id': person_id,              # keep as string for readability
+                'gender': self.labels[person_id][2],
+                'age_group': self.labels[person_id][0],
+                'age': self.labels[person_id][1],
+            })
 
     def _apply_split(self, split):
         """Apply train/val/test split"""

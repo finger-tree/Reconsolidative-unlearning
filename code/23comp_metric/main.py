@@ -31,7 +31,7 @@ import train_lib
 
 _DATA_DIR = flags.DEFINE_string(
     'data_dir',
-    'unlearning/SURF',
+    './data',
     'Path to the dataset.',
 )
 
