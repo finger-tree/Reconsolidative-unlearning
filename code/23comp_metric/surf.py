@@ -200,6 +200,10 @@ class SURFDataset(data.Dataset):
             # parts[-1] = filename, parts[-2] = 'color', parts[-3] = any_dir,
             # parts[-4] = person_id, parts[-5] = any_dir (top-level)
             person_id = parts[-4]
+
+            if person_id not in self.labels:
+                continue
+
             image = io.read_image(img_path)
             image = T.Resize((self.width, self.height))(image)
 
