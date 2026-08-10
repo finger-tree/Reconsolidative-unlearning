@@ -53,7 +53,8 @@ _NUM_MODELS = flags.DEFINE_integer(
     'Number of models to train.',
 )
 
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+DEVICE = train_lib.DEVICE
+
 
 # Info for training the original and retrained models:
 NUM_EPOCHS = 30

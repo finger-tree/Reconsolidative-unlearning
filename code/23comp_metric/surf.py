@@ -181,13 +181,14 @@ class SURFDataset(data.Dataset):
         # Build final label dictionary
         labels = {}
         for i, age_group in enumerate(ages_digitized):
-            user_id = labels_csv[i][0].decode('utf-8')
-            age = int(labels_csv[i][1])
+            user_id = labels_csv[i][0].decode('utf-8')  
+            age = 2020 - int(labels_csv[i][1])
             gender = labels_csv[i][2].decode('utf-8')
             
             labels[user_id] = (age_group, age, gender)
-
+        print(next(iter(labels.items())))
         return labels
+    
 
     def _load_examples(self):
         """Load all image paths and associated metadata"""
@@ -215,6 +216,7 @@ class SURFDataset(data.Dataset):
                 'age_group': self.labels[person_id][0],
                 'age': self.labels[person_id][1],
             })
+        print("samples", self.examples[0])
 
     def _apply_split(self, split):
         """Apply train/val/test split"""
@@ -273,7 +275,7 @@ def get_dataset(batch_size=64, quiet=False, dataset_path=''):
   test_ds = SURFDataset(dataset_path, width=32, height=32, split='test')
 
   # Get all person id from the training dataset.
-  ids = np.array([int(t['id']) for t in train_ds])
+  ids = np.array([t['id'] for t in train_ds])
   # Create a split the respect the user id
   # Reshape the arrays to have the same number of rows
   x = np.arange(len(ids)).reshape((-1, 1))
@@ -286,8 +288,8 @@ def get_dataset(batch_size=64, quiet=False, dataset_path=''):
   forget_ds = data.Subset(train_ds, forget_index)
 
   # Ensure that the retain and forget sets don't have any common IDs.
-  retain_ids = np.unique([int(ret['id']) for ret in retain_ds])
-  forget_ids = np.unique([int(forg['id']) for forg in forget_ds])
+  retain_ids = np.unique([ret['id'] for ret in retain_ds])
+  forget_ids = np.unique([forg['id'] for forg in forget_ds])
   assert not set(retain_ids).intersection(set(forget_ids))
 
   if not quiet:
@@ -316,10 +318,12 @@ def get_dataset(batch_size=64, quiet=False, dataset_path=''):
   _get_age_group_counts(forget_ds, 'forget', quiet=quiet)
   _get_age_group_counts(val_ds, 'valid', quiet=quiet)
   _get_age_group_counts(test_ds, 'test', quiet=quiet)
-  class_weights = [
-      1.0 / item[1][0] if item[1][0] != 0 else 1.0 for item in sorted_counts
-  ]
-  class_weights_tensor = torch.FloatTensor(class_weights)
+  class_weights = torch.ones(10, dtype=torch.float32)
+  for age_group, (count, _) in sorted_counts:
+    class_idx = int(age_group)
+    if 0 <= class_idx < 10:
+      class_weights[class_idx] = 1.0 / count if count != 0 else 1.0
+  class_weights_tensor = class_weights
   return (
       train_loader,
       val_loader,

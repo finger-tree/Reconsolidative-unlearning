@@ -22,7 +22,7 @@ from torch import nn
 from torch import optim
 from torchvision import models
 
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+DEVICE = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
 
 
 def _initialize():

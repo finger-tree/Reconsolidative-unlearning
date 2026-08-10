@@ -1,7 +1,33 @@
 import os
 import numpy as np
+from absl import logging
 
+def _get_age_group_counts(ds, name, quiet=False):
+  """Get the age group counts."""
+  age_group_counts = {}
+  age_group_ranges = {}
+  for sample in ds:
+    age_group = sample['age_group']
+    age = sample['age']
 
+    if age_group in age_group_counts:
+      age_group_counts[age_group][0] += 1
+      age_group_ranges[age_group][0] = min(age_group_ranges[age_group][0], age)
+      age_group_ranges[age_group][1] = max(age_group_ranges[age_group][1], age)
+    else:
+      age_group_counts[age_group] = [1, age]
+      age_group_ranges[age_group] = [age, age]
+
+  sorted_counts = sorted(age_group_counts.items(), key=lambda x: x[1][1])
+  for age_group, (count, age) in sorted_counts:
+    if not quiet:
+      logging.info(
+          '[Dataset %s] Age group %s : %d',
+          name,
+          age_group,
+          round(100 * count / len(ds), 2),
+      )
+  return sorted_counts
 
 if __name__ == '__main__':
     path = "data" # current path
