@@ -18,12 +18,21 @@
 import numpy as np
 import torch
 
+try:
+  from train_lib import DEVICE
+except ImportError:  # pragma: no cover - fallback for direct execution
+  DEVICE = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
+
 
 # =============================================================================
 # Metric code.
 DELTA = 1e-05
 EPSILON_CAP = 50
 NUM_THRESHOLDS_PER_UNIT = 100
+
+
+def _to_device(tensor):
+  return tensor.to(DEVICE)
 
 
 def compute_logit_scaled_confidence(logits, targets):
@@ -105,8 +114,8 @@ def _get_double_threshold_rates(pos_confs_, neg_confs_):
   pos_confs_ = torch.tile(pos_confs_[:, None], (1, total_num_thresholds))
   neg_confs_ = torch.tile(neg_confs_[:, None], (1, total_num_thresholds))
 
-  thr_right_ = torch.from_numpy(thr_right_).cuda()
-  thr_left_ = torch.from_numpy(thr_left_).cuda()
+  thr_right_ = _to_device(torch.from_numpy(thr_right_))
+  thr_left_ = _to_device(torch.from_numpy(thr_left_))
 
   # Predicted positives (pp) / predicted negatives (pn):
   def _is_pp(c):
@@ -141,7 +150,7 @@ def _get_single_threshold_rates(pos_confs_, neg_confs_):
   )
   thresholds_ = torch.linspace(min_val, max_val, num_thresholds)
   thresholds_flat = list(thresholds_.detach().cpu().numpy())
-  thresholds_ = thresholds_.cuda()
+  thresholds_ = _to_device(thresholds_)
 
   # thresholds_ is [num_thresholds] and pos_confs/neg_confs is [num models]
   # make them all into [num models, num_thresholds]
@@ -197,8 +206,8 @@ def _get_epsilons(pos_confs, neg_confs, delta):
       best_thresh_idx.append(-1)
       continue
 
-    pos_confs_ = torch.from_numpy(pos_confs_).cuda()
-    neg_confs_ = torch.from_numpy(neg_confs_).cuda()
+    pos_confs_ = _to_device(torch.from_numpy(pos_confs_))
+    neg_confs_ = _to_device(torch.from_numpy(neg_confs_))
 
     # Compute the tpr / fnr / fpr / tnr using two different decision rules.
     tpr_d, fnr_d, fpr_d, tnr_d, tf_d = _get_double_threshold_rates(
@@ -216,19 +225,19 @@ def _get_epsilons(pos_confs, neg_confs, delta):
     thresholds_flat = tf_d + tf_s
 
     total_num_thresholds = tpr.shape[0]
-    thr_eps = torch.zeros(total_num_thresholds).cuda()
+    thr_eps = _to_device(torch.zeros(total_num_thresholds))
 
     # Handle the special case of perfect separation (fpr = fnr = 0).
     # If the sum fpr + fnr is zero, it means both are 0 (since both are >=0).
     fpr_fnr_both_zero = torch.eq(
-        fpr + fnr, torch.zeros(total_num_thresholds).cuda()
+        fpr + fnr, _to_device(torch.zeros(total_num_thresholds))
     )
     tpr_tnr_both_ones = torch.eq(
-        tpr + tnr, 2 * torch.ones(total_num_thresholds).cuda()
+        tpr + tnr, 2 * _to_device(torch.ones(total_num_thresholds))
     )
     thr_eps = torch.where(
         fpr_fnr_both_zero * tpr_tnr_both_ones,
-        torch.full(thr_eps.shape, np.inf).cuda(),
+        _to_device(torch.full(thr_eps.shape, np.inf)),
         thr_eps,
     )
 
@@ -237,42 +246,45 @@ def _get_epsilons(pos_confs, neg_confs, delta):
     # exclude cases where both fpr = fnr = 0 because the code in the above lines
     # would have set those entires of `thr_eps` to inf. This is based on the
     # hypothesis that that's an indication of insufficient samples.
-    thr_eps_is_zero = torch.eq(thr_eps, torch.zeros_like(thr_eps).cuda())
-    fpr_or_fnr_is_zero = torch.eq(fpr * fnr, torch.zeros_like(thr_eps).cuda())
+    thr_eps_is_zero = torch.eq(thr_eps, _to_device(torch.zeros_like(thr_eps)))
+    fpr_or_fnr_is_zero = torch.eq(fpr * fnr, _to_device(torch.zeros_like(thr_eps)))
     thr_eps = torch.where(
         thr_eps_is_zero * fpr_or_fnr_is_zero,
-        torch.full(thr_eps.shape, np.nan).cuda(),
+        _to_device(torch.full(thr_eps.shape, np.nan)),
         thr_eps,
     )
 
     # For the surviving thresholds (epsilon not nan nor inf), compute epsilon:
+    with np.errstate(divide='ignore', invalid='ignore'):
+      eps_candidates = np.stack(
+          [
+              np.log(1 - delta - fpr.detach().cpu().numpy())
+              - np.log(fnr.detach().cpu().numpy()),
+              np.log(1 - delta - fnr.detach().cpu().numpy())
+              - np.log(fpr.detach().cpu().numpy()),
+          ],
+          axis=0,
+      )
+    eps_candidates = np.where(np.isfinite(eps_candidates), eps_candidates, np.nan)
     thr_eps = torch.where(
-        torch.eq(thr_eps, torch.zeros_like(thr_eps).cuda()),
-        torch.from_numpy(
-            np.clip(
-                np.nanmax(
-                    [
-                        np.log(1 - delta - fpr.detach().cpu().numpy())
-                        - np.log(fnr.detach().cpu().numpy()),
-                        np.log(1 - delta - fnr.detach().cpu().numpy())
-                        - np.log(fpr.detach().cpu().numpy()),
-                    ],
-                    axis=0,
-                ),
-                0,
-                None,
-            )
-        ).cuda(),
+        torch.eq(thr_eps, _to_device(torch.zeros_like(thr_eps))),
+        _to_device(torch.from_numpy(np.clip(np.nanmax(eps_candidates, axis=0), 0, None))),
         thr_eps,
     )
 
     # Find the inds where thr_eps is not nan
-    keep_inds = [
-        ind
-        for ind, te in enumerate(thr_eps.detach().cpu().numpy())
-        if not np.isnan(te)
-    ]
-    thr_eps = thr_eps.detach().cpu().numpy()[keep_inds]
+    thr_eps_np = thr_eps.detach().cpu().numpy()
+    keep_inds = [ind for ind, te in enumerate(thr_eps_np) if not np.isnan(te)]
+    if not keep_inds:
+      epsilons.append(EPSILON_CAP)
+      all_fprs.append(-1)
+      all_tprs.append(-1)
+      all_fnrs.append(-1)
+      all_tnrs.append(-1)
+      thresholds.append(-1)
+      best_thresh_idx.append(-1)
+      continue
+    thr_eps = thr_eps_np[keep_inds]
     tpr = tpr.detach().cpu().numpy()[keep_inds]
     fpr = fpr.detach().cpu().numpy()[keep_inds]
     tnr = tnr.detach().cpu().numpy()[keep_inds]
@@ -280,7 +292,15 @@ def _get_epsilons(pos_confs, neg_confs, delta):
     # kept_thresholds = thresholds_flat[keep_inds]
     kept_thresholds = [thresholds_flat[ind] for ind in keep_inds]
 
-    assert thr_eps, "Something went wrong, all thresholds gave nan epsilon..."
+    if thr_eps.size == 0:
+      epsilons.append(EPSILON_CAP)
+      all_fprs.append(-1)
+      all_tprs.append(-1)
+      all_fnrs.append(-1)
+      all_tnrs.append(-1)
+      thresholds.append(-1)
+      best_thresh_idx.append(-1)
+      continue
     thr_eps = np.array(thr_eps)
     epsilons.append(np.nanmax(thr_eps))
     # Get the best threshold via something like 'arg-nan-max': set nans to zeros

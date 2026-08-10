@@ -414,7 +414,7 @@ def compute_accuracy_surf(
   accs = {}
   pc_accs = {}
   list_of_classes = list(range(10))
-  device = 'cuda' if torch.cuda.is_available() else 'cpu'
+  device = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
 
   with torch.no_grad():
     for name, loader in zip(data_names_list, data_loader_list):
