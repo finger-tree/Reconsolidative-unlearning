@@ -52,7 +52,16 @@ def train_or_reload_model(
 
   if os.path.exists(path):
     logging.info('Reloading model from %s...', path)
-    net.load_state_dict(torch.load(path))
+    checkpoint = torch.load(path)
+    logging.info('Loaded model from %s...', path)
+        # Print the first few keys to check what the architecture actually looks like
+    if isinstance(checkpoint, dict):
+        logging.info("Keys found in file: %s", list(checkpoint.keys())[:10])
+    else:
+        logging.info("Warning: You saved the entire model object, not a state_dict! %s", type(checkpoint))
+    logging.info('Loading states into state_dict...')
+    net.load_state_dict(checkpoint)
+    logging.info('Net Hydrated')
   else:
     train(
         net,

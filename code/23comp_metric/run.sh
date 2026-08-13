@@ -26,4 +26,6 @@ python -m main \
   --checkpoint_dir ./checkpoints \
   --output_dir ./outputs
 
-  
+
+#test training with 1 epoch
+# cd /Users/ansen/development/Reconsolidative-unlearning/code/23comp_metric && . .venv/bin/activate && python -m main --num_models 1 --data_dir ./data --checkpoint_dir ./checkpoints --output_dir ./outputs

@@ -49,7 +49,7 @@ _OUTPUT_DIR = flags.DEFINE_string(
 
 _NUM_MODELS = flags.DEFINE_integer(
     'num_models',
-    512,
+    10, #512 competition standard
     'Number of models to train.',
 )
 
@@ -161,7 +161,7 @@ def get_unlearned_and_retrained_confs_and_accs(
         original_model,
     )
     net.eval()
-
+    logging.info("Finished training unlearning algorithm X%d", i+1)
     # For this particular model, compute the forget set confidences.
     confs_forget = _get_confs(net, forget_loader_no_shuffle)
     unlearned_confs_forget.append(confs_forget)

@@ -31,7 +31,15 @@ EPSILON_CAP = 50
 NUM_THRESHOLDS_PER_UNIT = 100
 
 
-def _to_device(tensor):
+def _to_device(tensor, dtype=None):
+  if isinstance(tensor, torch.Tensor):
+    tensor = tensor
+  elif isinstance(tensor, np.ndarray):
+    tensor = torch.from_numpy(tensor)
+  else:
+    tensor = torch.as_tensor(tensor)
+  if dtype is not None and tensor.dtype != dtype:
+    tensor = tensor.to(dtype=dtype)
   return tensor.to(DEVICE)
 
 
@@ -114,8 +122,8 @@ def _get_double_threshold_rates(pos_confs_, neg_confs_):
   pos_confs_ = torch.tile(pos_confs_[:, None], (1, total_num_thresholds))
   neg_confs_ = torch.tile(neg_confs_[:, None], (1, total_num_thresholds))
 
-  thr_right_ = _to_device(torch.from_numpy(thr_right_))
-  thr_left_ = _to_device(torch.from_numpy(thr_left_))
+  thr_right_ = _to_device(torch.from_numpy(thr_right_), dtype=torch.float32)
+  thr_left_ = _to_device(torch.from_numpy(thr_left_), dtype=torch.float32)
 
   # Predicted positives (pp) / predicted negatives (pn):
   def _is_pp(c):
@@ -192,6 +200,18 @@ def _get_epsilons(pos_confs, neg_confs, delta):
     neg_diff = np.max(neg_confs_) - np.min(neg_confs_)
     largest = pos_diff if pos_diff > neg_diff else neg_diff
     smallest = neg_diff if pos_diff > neg_diff else pos_diff
+    if not np.isfinite(largest) or not np.isfinite(smallest) or largest <= 0:
+      # If the distributions are degenerate (for example, both are constant),
+      # return the maximum epsilon. This avoids divide-by-zero warnings and
+      # keeps the metric behavior stable for edge cases.
+      epsilons.append(EPSILON_CAP)
+      all_fprs.append(-1)
+      all_tprs.append(-1)
+      all_fnrs.append(-1)
+      all_tnrs.append(-1)
+      thresholds.append(-1)
+      best_thresh_idx.append(-1)
+      continue
     if smallest / largest < 0.01:
       # If this ratio is below 1% means that the unlearned distribution is very
       # peaky. In that case, return the maximum epsilon, because epsilon should
@@ -206,8 +226,8 @@ def _get_epsilons(pos_confs, neg_confs, delta):
       best_thresh_idx.append(-1)
       continue
 
-    pos_confs_ = _to_device(torch.from_numpy(pos_confs_))
-    neg_confs_ = _to_device(torch.from_numpy(neg_confs_))
+    pos_confs_ = _to_device(torch.from_numpy(pos_confs_), dtype=torch.float32)
+    neg_confs_ = _to_device(torch.from_numpy(neg_confs_), dtype=torch.float32)
 
     # Compute the tpr / fnr / fpr / tnr using two different decision rules.
     tpr_d, fnr_d, fpr_d, tnr_d, tf_d = _get_double_threshold_rates(
@@ -255,20 +275,29 @@ def _get_epsilons(pos_confs, neg_confs, delta):
     )
 
     # For the surviving thresholds (epsilon not nan nor inf), compute epsilon:
+    fpr_np = np.clip(fpr.detach().cpu().numpy(), 1e-12, 1.0 - delta - 1e-12)
+    fnr_np = np.clip(fnr.detach().cpu().numpy(), 1e-12, 1.0 - delta - 1e-12)
     with np.errstate(divide='ignore', invalid='ignore'):
       eps_candidates = np.stack(
           [
-              np.log(1 - delta - fpr.detach().cpu().numpy())
-              - np.log(fnr.detach().cpu().numpy()),
-              np.log(1 - delta - fnr.detach().cpu().numpy())
-              - np.log(fpr.detach().cpu().numpy()),
+              np.log(1.0 - delta - fpr_np) - np.log(fnr_np),
+              np.log(1.0 - delta - fnr_np) - np.log(fpr_np),
           ],
           axis=0,
       )
-    eps_candidates = np.where(np.isfinite(eps_candidates), eps_candidates, np.nan)
+    eps_candidates = np.where(np.isfinite(eps_candidates), eps_candidates, -np.inf)
+    eps_candidates_max = np.max(eps_candidates, axis=0)
+    eps_candidates_max = np.where(
+        np.isfinite(eps_candidates_max) & (eps_candidates_max > 0),
+        eps_candidates_max,
+        0.0,
+    )
     thr_eps = torch.where(
         torch.eq(thr_eps, _to_device(torch.zeros_like(thr_eps))),
-        _to_device(torch.from_numpy(np.clip(np.nanmax(eps_candidates, axis=0), 0, None))),
+        _to_device(
+            torch.from_numpy(np.clip(eps_candidates_max, 0, None).astype(np.float32)),
+            dtype=torch.float32,
+        ),
         thr_eps,
     )
 
@@ -342,6 +371,8 @@ def compute_forget_score_from_confs(unlearned_confs, retrained_confs):
   # Back-of-the-envelope calculation for the max value of epsilon
   # based on the given number of samples from each distribution.
   num_models = unlearned_confs.shape[0]
+  if num_models <= 1:
+    return 0.0
   max_epsilon = np.ceil(np.log(num_models - 1))
 
   # Compute the score.

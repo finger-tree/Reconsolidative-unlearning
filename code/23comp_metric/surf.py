@@ -119,7 +119,7 @@ import torchvision.transforms as T
 class SURFDataset(data.Dataset):
     """The SURF dataset."""
 
-    def __init__(self, path, width=224, height=224, split='train'):
+    def __init__(self, path, width=16, height=16, split='train'):
         super().__init__()
         self.path = path
         self.width = width
@@ -270,9 +270,9 @@ def _get_age_group_counts(ds, name, quiet=False):
 
 def get_dataset(batch_size=64, quiet=False, dataset_path=''):
   """Get the SURF dataset."""
-  train_ds = SURFDataset(dataset_path, width=32, height=32, split='train')
-  val_ds = SURFDataset(dataset_path, width=32, height=32, split='val')
-  test_ds = SURFDataset(dataset_path, width=32, height=32, split='test')
+  train_ds = SURFDataset(dataset_path, split='train')
+  val_ds = SURFDataset(dataset_path, split='val')
+  test_ds = SURFDataset(dataset_path, split='test')
 
   # Get all person id from the training dataset.
   ids = np.array([t['id'] for t in train_ds])
