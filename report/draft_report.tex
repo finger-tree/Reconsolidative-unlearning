@@ -35,9 +35,10 @@ Reconsolidation is a replicable process in neurobiology to treat memory recall t
 
 This suggests a worthy subject of intrigue in which an engantled neuro network model exibits the ability to cleanly "forget" or "rewrite" influences from past examples, as if an indexed storage.
 
-Inspired by a distributive network able to cleanly target a memory and modify it, we investigated the current approaches of unlearning algorithms, Hopfield network associative memory storage, abstract models of latent cause theory that describe reconsolidation therapy, processes of hippocampal indexing like pattern completion and seperation, and adapted the 2023 unlearning competition metric to measure a new classification unlearning algorithm with these components and compared against other approaches.
+Inspired by a distributive network able to cleanly target a memory and modify it, we investigated the current approaches of unlearning algorithms, Hopfield network associative memory storage, abstract models of latent cause theory that describe reconsolidation therapy, processes of hippocampal indexing like pattern completion and seperation, and adapted the 2023 unlearning competition metric to measure an attempt at a new classification unlearning algorithm with these components and compared against other approaches.
 
-
+\chapter*{Acknowledgements}
+    Dr Asgha, Rizwan, for his guidance and tolerance.
 \chapter{Introduction}
 Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. The most notable refers to the UK General Data Protection Regulation Article 17 (the right to forget), protecting data ownership, consent, personal safety among others~\cite{edps2025,liu2024}. This task is incredibly daunting due to the entangled sequential transformation during training, akin to a one-way cryptographic function~\cite{cao2015}. To date, computationally acceptable solutions are mere approximations with degrees of residual influence, while exact solutions are far from feasibly operational~\cite{xu2023,wang2024}.
 
@@ -79,7 +80,7 @@ This is the next-best strategy used in most commercial AI outputs due to it's si
 \section{Metric on machine unlearning}
 A good machine unlearning algorithm should be power efficient, behave as if without prior knowledge of the unlearnt, and retain it's model performance.
 
-The 2023 google unlearning competion benchmark, provides a starting point to measure classification models. It assesses the performance of approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility. The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point. It measures the change of distribution regarding other datapoints if one is leaked.
+The 2023 Google unlearning competion benchmark, provides a starting point to measure classification models. It assesses the performance of approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility. The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point. It measures the change of distribution regarding other datapoints if one is leaked.
 
 To reframe the quality (unlearning) measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned model against the base completely retrained model.
 
@@ -136,7 +137,7 @@ Drawing on the interpretation that these engram cell encods latent cause on sign
 \chapter{System requirements and specification}
 In summary of the introduced concepts, we outline on a high level how an inspired system, and evaluation could arise from the above findings:
 
-\paragraph{Evaluation} We would utilize the classification metric of the 2023 google unnlearning competition, predicting images to age. Scores obtained would be compared to other submissions in the competition.
+\paragraph{Evaluation} We would utilize the classification metric of the 2023 Google unnlearning competition, predicting images to age. Scores obtained would be compared to other submissions in the competition.
 
 \paragraph{Cause Index} The latent cause theory model triangle relationship between conditioned stimuli, unconditioned stimuli, latent cause and conditional response. Would be reframed as data, unlearning marker, cause, and output. In which a model layer would be learnt to entirely dependent on the hidden causes in each layer to determine layer output. 
 
@@ -146,36 +147,35 @@ In summary of the introduced concepts, we outline on a high level how an inspire
 
 \section{requirements gathering and prioritization}
 \subsection{2023 unlearning competition metric}
-\paragraph{Link} 
+    \paragraph{Link} 
 
-\url{https://github.com/google-deepmind/unlearning_evaluation}
+    \url{https://github.com/Google-deepmind/unlearning_evaluation}
 
-\paragraph{Data} CASIA-CeFA \cite{liu2021casia,liu2021cross} \\
-Example label: .txt file on each line: <id> <year of birth> <F/M> \\
-Example target: .jpg 300*300 (variable size)
+    \paragraph{Data} CASIA-CeFA \cite{liu2021casia,liu2021cross} \\
+    Example label: .txt file on each line: <id> <year of birth> <F/M> \\
+    Example target: .jpg 300*300 (variable size)
 
-\paragraph{Pre-trained model} 
-a ResNet-18 image classifier trained for 30 epochs on a dataset of face images, predicting age group (10 classes) \\
-Input: 32*32 (resized images)
+    \paragraph{Pre-trained model} 
+    a ResNet-18 image classifier trained for 30 epochs on a dataset of face images, predicting age group (10 classes) \\
+    Input: 32*32 (resized images)
 
-\paragraph{prioritization}
-High. Since without the metric, we cannot evaluate or compare methods of choice.
+    \paragraph{prioritization}
+    High. Since without the metric, we cannot evaluate or compare methods of choice.
 
 \subsection{latent cause theory model}
-\paragraph{Link} \url{https://github.com/sjgershm/memory-modification} \cite{gershman2017computational}
-\paragraph{prioritization}
-High. Core model design
+    \paragraph{Link} \url{https://github.com/sjgershm/memory-modification} \cite{gershman2017computational}
+    \paragraph{prioritization}
+    High. Core model design
 \subsection{Pattern seperation}
-
-\paragraph{prioritization}
-High. Core model design
+    \paragraph{prioritization}
+    High. Core model design
 \subsection{Pattern completion}
-\paragraph{prioritization}
-Low. Optimization
+    \paragraph{prioritization}
+    Low. Optimization
 \subsection{comparison with other models}
 Compare against exact, fine-tune, and other unlearning methods.
-\paragraph{prioritization}
-Low. since unlearning metric score already used in large competition with precedence, plus running the inefficient unlearning metric on all of those models is infesible.
+    \paragraph{prioritization}
+    Low. since unlearning metric score already used in large competition with precedence, plus running the inefficient unlearning metric on all of those models is infesible.
 
 % \section{appropriate software development life cycle methodologies for development projects}
 
@@ -190,23 +190,154 @@ Data ownership and data security are fundamental to personal well-being, safety,
 Models are increasingly capable of producing results far exceeding human performance. Without a baked-in, human-readable, and accountable step chain, AI could potentially override human input and automate decisions without oversight aligned to common human interests. This concern extends directly to machine unlearning itself: an unlearning operation is only as trustworthy as the ability to verify that it actually occurred. Unlike conventional deletion, where removal from storage is straightforward to confirm, unlearning claims are made about a model's internal parameters, which are not human-interpretable by default. This creates an accountability gap: an organisation can claim compliance with an erasure request while having no rigorous, auditable proof that the targeted data's influence has actually been removed. Verifiable and certifiable unlearning, mechanisms that allow independent auditors or regulators to confirm that specific data no longer influences a model's outputs, is therefore a prerequisite for genuine accountability, not an optional technical nicety.
 
 \chapter{System Design}
-\section{Development}
-\section{Experiemnt design, research, and analytical techniques}
-\section{Phases of development and experiments}
-\section{add details of design or experiments - challenges, problems, workarounds, adaptations, extensions, etc.}
-\section{Justification of design choices and highlight the challenges}
+\section{Adaptation of latent cause theory model}
+\subsection{Motivation for the Mapping}
+ 
+In the original formulation, an animal's conditioned response on a given
+trial depends entirely on which latent cause it currently believes is
+active: the response is computed as a cause-weighted combination of
+learned stimulus--outcome associations,
+\[
+V_t = \left(X_t^\top W\right) \cdot \mathrm{post}_t,
+\]
+where $W$ holds the per-cause learned weights and $\mathrm{post}_t$ is the
+posterior probability over causes at trial $t$. Nothing about this
+computation is specific to fear conditioning: it is a general statement
+that a layer's output is a function of its input and of a hidden,
+categorical state that the layer infers online. The reframing in
+Table~\ref{tab:mapping} makes this explicit by relabeling the unconditioned
+stimulus $r$ as an \emph{unlearning marker} --- a signal, present on some
+trials and absent on others, that drives the model to either reinforce or
+actively erase (via the protein-synthesis-inhibitor mechanism, \texttt{psi})
+its current cause-conditional associations --- and by relabeling the
+conditioned response as a generic \emph{output} that depends only on
+\texttt{data} and the inferred \texttt{cause}.
+ 
+\subsection{Implementation: \texttt{LatentCauseLayer}}
+ 
+The reframing was implemented as a thin wrapper class,
+\texttt{LatentCauseLayer}, around the unmodified core inference routine.
+Its public interface exposes exactly the four renamed quantities:
+ 
+\begin{verbatim}
+class LatentCauseLayer:
+    def forward(self, data, unlearning_marker, Dist):
+        results = imm_localmap(data, unlearning_marker, Dist, self.opts)
+        self.data = data
+        self.unlearning_marker = unlearning_marker
+        self.cause_posterior = results.Zp
+        self.output = results.V
+        self.causes = results.cause_index
+        return self.output
+\end{verbatim}
+ 
+No numerical behavior of the underlying model was altered by this wrapper;
+it exists purely to present the existing computation under the requested
+vocabulary, and to expose the array described in
+Section~\ref{sec:causearray}.
+ 
+\section{The Growing Cause-Index Array}
+\label{sec:causearray}
+ 
+The original MATLAB implementation represents cause assignment with a
+fixed-size matrix \texttt{Z} of shape $T \times K$, where $K$ is a
+pre-allocated upper bound on the number of causes (default 15). Whether and
+when a \emph{new} cause was created is not recorded anywhere; it can only
+be inferred after the fact by inspecting which columns of \texttt{Z} are
+nonzero. To satisfy the requirement that new causes populate an explicit,
+growing array, the core inference loop was instrumented as follows.
+ 
+\subsection{Definition of a Creation Event}
+ 
+At the end of processing trial $t$, the model selects the maximum a
+posteriori cause,
+\[
+k = \arg\max_j \ \mathrm{post}_t[j],
+\]
+where $\mathrm{post}_t$ is the trial's cause posterior after incorporating
+the unlearning marker (reward). A creation event is defined precisely as
+the case where cluster $k$ had a prior count of zero before trial $t$,
+i.e. $N[k] = 0$, where $N$ is the vector of per-cause trial counts
+accumulated from $Z[0{:}t,:]$. This is the same condition the ddCRP prior
+already uses internally to reserve probability mass for an as-yet-unused
+cause, so no new inference logic was introduced --- only a record of when
+that branch is actually taken.
+ 
+\subsection{Implementation}
+ 
+\begin{verbatim}
+cause_index = []  # grows by one entry per creation event
+ 
+...
+    k = int(np.argmax(post))
+    if N[k] == 0:
+        cause_index.append({'trial': t, 'cause_id': k})
+    Z[t, k] = 1
+\end{verbatim}
+ 
+The list \texttt{cause\_index} starts empty and accumulates one dictionary
+per creation event, each recording the trial index at which the cause was
+created and the cause's integer identifier. It is attached to the
+inference results as \texttt{results.cause\_index} and surfaced on the
+layer wrapper as \texttt{layer.causes}, with convenience accessors
+\texttt{layer.num\_causes\_created} and \texttt{layer.cause\_timeline()}
+for extracting the trial indices and cause identifiers as parallel arrays.
+ 
+\subsection{Demonstration}
+ 
+A minimal standalone example --- three rewarded trials followed, after a
+20-unit time gap, by five unrewarded trials --- was used to confirm the
+array's behavior. With the learning-rate and threshold parameters used
+elsewhere in the codebase's own experiment designs
+($\eta = 0.3$, $\theta = 0.02$, $\lambda = 0.01$), the model creates a
+first cause at trial 0 and, once the unlearning marker fails to match what
+the first cause predicts, a second cause at trial 3:
+\begin{verbatim}
+cause creation events = [{'trial': 0, 'cause_id': 0},
+                         {'trial': 3, 'cause_id': 1}]
+\end{verbatim}
 
-\chapter{Experimental Results / Evaluation}
-\section{evaluate how the system performs}
-\section{discuss results and show insights into why you got that result}
+This matches the qualitative mechanism described in
+Section~\ref{sec:causearray}: the first cause's learned weight, trained
+toward a reward of 1 during acquisition, produces a large reward-prediction
+mismatch as soon as the unlearning marker drops to 0, which is precisely
+the condition that favors assigning MAP credit to a fresh, as-yet-unused
+cause rather than continuing to update the existing one.
+
+\section{Adaptation of unlearning metric}
+\subsection{data}
+The data was obtained from \url{https://sites.google.com/view/face-anti-spoofing-challenge/dataset-download/casia-surf-cefacvpr2020}, consisting of significantly more data of different format, from the original dataset, including three distinct geographies, masking, lighting and other irrelevant data to the original metric, significantly increasing training time. Adaptation considerations are listed as follows:
+
+\paragraph{Dataset dimensions} Resize is changed from 224*224 to 16*16
+\paragraph{label loader} SURFDataset class \_load\_labels are modified to read all .txt files to match labels with the most inner .jpg files under /color directory
+\paragraph{age computation} Age computation from year of birth
+\paragraph{GPU/Device support} Added Metal Performance Shaders support and correct floating point metal assumptions.
+\paragraph{Class Weights Refactoring} List based to explicit tensor allocation of classes to handle missing classes case.
+\paragraph{ID} Changed int resolve problems on GPU to string
+\paragraph{testing} translated xmanager workflow to bash ready script in ./run.sh and more logging.info use to track progress in training models
+
+
+% \section{Phases of development and experiments}
+% \section{add details of design or experiments - challenges, problems, workarounds, adaptations, extensions, etc.}
+% \section{Justification of design choices and highlight the challenges}
+
+% \chapter{Experimental Results / Evaluation}
+% \section{evaluate how the system performs}
+% \section{discuss results and show insights into why you got that result}
 
 \chapter{Conclusion and Discussion}
-
 \section{Overall project conclusion}
-Future work includes exploration of components of brain forgetting mechanism to modify continual learning into continual learning and unlearning models.
-\section{future work}
+We have been able to infer properties of reconsolidation therapy into a theoretical model, with complications it's implementation. Most of it stem from the fact that a complicated model requires complicated verification, even if it produces a runtime friendly output model.
 
-\section{Appendix}
+We have been able to expreiment with compoents of our theoretical model. Namely latent cause model to infer cause based on experience and proximity, and metric.
+
+The project's scope makes it difficult to complete in limited time, especially on complicated topics in reasoning about the vast choice of models, abstraction with no concrete detail of implementation or precedence. 
+
+\section{future work}
+To let a model truly grow and prune on reasoning, models with dynamic size would bridge the current knowledge gap in how the brain works and efficient implementation.
+Nested Learning \cite{behrouz2025nested} might be useful where the rules of learning are continually discovered.
+Memory and Data considerations might prove beneficial to consult self-modifying code, where data and programme act as expressions of limited resources in optimization. In this case the data would be causes and the programme it's expressions.
+
 \bibliographystyle{agsm}
 \bibliography{references}
 \end{document}
