@@ -5,6 +5,7 @@
 % LOAD MISSING PACKAGES HERE
 \usepackage{amsmath}  % Fixes the 'cases' and '\text' errors
 \usepackage{amsfonts} % Provides the blackboard bold \mathbb font
+\usepackage{hyperref} % Put this in the preamble
 
 % Write the approved title of your dissertation
 \title{Brain-Inspired Machine Unlearning: Emulating the Transformative Success of Emotional Memory Reconsolidation Therapy}
@@ -27,275 +28,187 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
-\section{Abstract}
-Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. Inspired by a distributive network able to cleanly target a memory and modify it, we investigate the practical models of associative memory and attempt to create a machine unlearning model, based on it's properties.
+\chapter{Abstract}
+Reconsolidation is a replicable process in neurobiology to treat memory recall that is emotionally disruptive. It works on the basis of recreating the context of the surrounding trigger for the emotion, and introducing a new safer emotion to overwrite this trigger. This effect is long lasting and permanent with proper treatment. This suggests that memories, which is widely agreed to form in the hippocampal formation, indexed through time in it's growth, and gradually migrates to the outer cortex, is not permanent.
 
-\section{Introduction}
+This suggests a worthy subject of intrigue in which an engantled neuro network model exibits the ability to cleanly "forget" or "rewrite" influences from past examples, as if an indexed storage.
+
+Inspired by a distributive network able to cleanly target a memory and modify it, we investigated the current approaches of unlearning algorithms, Hopfield network associative memory storage, abstract models of latent cause theory that describe reconsolidation therapy, processes of hippocampal indexing like pattern completion and seperation, and adapted the 2023 unlearning competition metric to measure a new classification unlearning algorithm with these components and compared against other approaches.
+
+
+\chapter{Introduction}
 Machine unlearning concerns the removal of data trained into a model, with rich regulatory and law implications. The most notable refers to the UK General Data Protection Regulation Article 17 (the right to forget), protecting data ownership, consent, personal safety among others~\cite{edps2025,liu2024}. This task is incredibly daunting due to the entangled sequential transformation during training, akin to a one-way cryptographic function~\cite{cao2015}. To date, computationally acceptable solutions are mere approximations with degrees of residual influence, while exact solutions are far from feasibly operational~\cite{xu2023,wang2024}.
 
-Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.(todo: what you have done)
+Memory reconsolidation research might provide a significant piece to the puzzle with their profound breakthrough on emotional memory therapy, breaking the long standing understanding that emotional memory consolidation is permanent through synaptic lock~\cite{brunet2008,brunet2014,brunet2018,wright2021}. Most significant is how clean and permanent this form of therapy effected memory~\cite{kamboj2020}.
 
 Emulating this in context of a learnable model would have profound implications. Firstly, the recall and memory requirement for re-consolidation would suggest that a data address relationship exists in such models~\cite{ramsauer2020}. Secondly, reconsolidation allows for memory alteration, allowing data dynamic models. And thirdly, this data-targeted approach is likely computationally feasible.
 
-\section{Literature Review}
+The following sections discusses the main ideas behind the inspired unlearning algorithm.
 
-\subsection{current machine unlearning models and techniques}
-The rapid demand for machine unlearning has led several efforts to survey and unify the field under common taxonomies, and numerous techniques for certain contexts has been developed.
+\section{Machine unlearning models and techniques}
+Machine unlearning techniques have been developed to address a range of distinct technical problems. A systematic compilation and analysis of these problems and their corresponding solutions provides a useful basis for examining potential analogies with the brain’s capacity for selective forgetting.
 
-The survey, "A survey of machine unlearning in large language models: Methods, challenges and future directions" \cite{geng2025llmunlearning} Proposed a new taxamony in classifying unlearning techniques, evaluation measures, benchmarking and benchmarking. And explores the effects of multi-modal unlearning.Machine unlearning methods are classified into: Direct Fine-Tuning, Localized Parameter Modification, Leveraging auxiliary models, and Input/Output-based unlearning.Evaluation measures are classified into: Adversarial Evaluation and Traditional evaluation. It also discuesses Unimodal and Multimodal benchmarking.
+\subsection{Exact unlearning}  
+These methods aim to remove the influence of the forget set as if the model has been completely retrained. They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity. SISA \cite{bourtoule2021sisa}, ARCANE \cite{arcane2022} and others follow this methodology
 
-The servey, "Machine Unlearning: A comprehensive servey" \cite{liu2024survey} proides a high level classification based on 4 appoaches to machine unlearning: Centralized unlearning, Federated unlearning, unlearning verification, and privacy and serucity issues in machine unlearning. It seperates centralized unlearning into exact unlearning, and approximate unlearning.Below is a high level summary of current approaches in unlearning, verification and evaluation, and benchmarking.
+Since only the data affected partition is retrained, the forget set influence is physically bounded from other possible entanglement, this makes influences contained. Any model that is not exact is approximate.
 
-\paragraph{Exact unlearning}  
-These methods aim to remove the influence of the forget set as if the model has been completely retrained.They limit data influence by partitioning the dataset into shards, trained into sub-models, forming an ensemble. Unlearning is achieved by retraining,only the affected sub-models, reducing computational cost. Although exact, these methods are still impractical in scaling, accuracy degredation and design complexity. SISA \cite{bourtoule2021sisa}, ARCANE \cite{arcane2022} and others follow this methodology.
+However most unlearning problems doesn't have known partition of dataset, often at the request after the fact of training. It also assumes the often wrong assumption that the final model does not have dependent data relavant to the output between partitioned models. Finally, models that think alike often come to the same conclusion, so however exact this unlearning method is, it cannot guarantee that outputs resemble that of the request take down based on convergence evolution.
 
-\paragraph{Approximate unlearning}
-Approximate unlearning is a compromise for computational efficiency with a more inherent risk of residual influence. They only provide weak unlearning guarantees.
-
-\paragraph{Direct Fine-tuning}
+\subsection{Direct Fine-tuning}
 Direct fine-tuning methods perform additional training steps on the forget set, like fine-tuning. These methods are computationally simple, but is prone to cause unintentional damage existing knowledge,akin to catastrophic forgetting in continual learning. Below are some examples:
 
 Gradient ascent (GA), additionally train a loss over the forget set using negative log-likelihood loss, To maintain model accuracy, regularization loss over the retrain set is often used, like a gradient descent or KL divergence. 
 
 Reinforcement learning (RL) methods like Proximal Policy Optimization (PPO), Preference optimization (PO), Direct Preference optimization (DPO), negative preference optimization (NPO) that treats the forget set as preferences to policy on the model.
 
-\paragraph{Localized Parameter Modification}
-Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. Below are some examples: Representation engineering, like RMU, which redirects low layer forget set token to noise vector.
+These models are fast approximates, however they do not solve the fundamental entangled nature of trained data by inherently using similar methods for training to untrain it's data, introducing the same residual influence or catastrophic forgetfulness with the inherent setup.
 
-\paragraph{Leveraging auxiliary models}
-Leveraging auxiliary models typically involve using additional models to help remove or suppress forgetset influence.
+\subsection{Localized Parameter Modification}
+Localized Parameter Modification targets and adjusts specific parts of the model responsible for the forget set. These methods are precise, but require a lot of assumptions on how knowledge is located in the model. For example, language models represent tokens as vectors, and training tokens to point to a space of misunderstanding on the forget set of harmful content encodes censorship.
 
-\paragraph{Input/Output-based unlearning}
-Input/Output-based unlearning focuses filtering the model's inputs or outputs without changing the core model to achieve unlearning on the forget set.
+These methods solve direct fine-tunings' referenceless re-training by defining one in output, however model entanglment persists, and assumes all possible unlearning concepts/meanings as the defined structure without higher order combinations, or emergence behaviour of dependent meanings.
 
-\subsection{Metric on machine unlearning}
+\subsection{Input/Output-based unlearning}
+Input/Output-based unlearning focuses filtering the model's inputs or outputs without changing the core model to achieve unlearning on the forget set. 
 
-\subsubsection{NeuraIPS 2023 unlearning competition benchmark} 
-The NeuraIPS 2023 competition is hosted on Kaggle, to address the technical challenges of machine unlearning. It aims to catalyse the use of efficient machine unlearning algorithms, as well promoting the standardization of unlearning benchmarks. This benchmark assesses the performanceof approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility.The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point.It measures the change of distribution regarding other datapoints if one is leaked.$\Pr[\mathcal{M}(D) \in S] \leq e^{\varepsilon} \Pr[\mathcal{M}(D') \in S].$To reframe this measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned modelagainst the base completely retrained model.
+This is the next-best strategy used in most commercial AI outputs due to it's simplicity and speed, however due to it's ad hoc nature, it introduces manual error, one size fits all censorship, and addes maintanance and ill-automated scaling for highly related (or not) cases.
+
+\section{Metric on machine unlearning}
+A good machine unlearning algorithm should be power efficient, behave as if without prior knowledge of the unlearnt, and retain it's model performance.
+
+The 2023 google unlearning competion benchmark, provides a starting point to measure classification models. It assesses the performance of approximated unlearning algorithms on classification models. It has three metrics: forgetting quality, efficiency and utility. The bases for comparison is inspired by Differential Privacy, which is a measure on what an adversary can learn about the leak of a data point. It measures the change of distribution regarding other datapoints if one is leaked.
+
+To reframe the quality (unlearning) measure to unlearning, an advasary, in this case the auditor model, measures unlearning by comparing the distributional change of the unlearned model against the base completely retrained model.
+
+It trains a number of baseline models (full re-trained without the forget set), and a number of unlearning models. By giving these modles a random seed, they exhibit a statistical model for each input. By performing a membership inference attack, where an example was given a probablity of being in the training data, these statistical models are compared for similarity, giving a score to quality (unlearning).
+
+This metric itself is not time efficient, the number of models that needs to be trained to have a meaningful statistical comparison of it's variations is far higher than the infesible scaling of retraining from scratch. It does not make sense to create an efficient unlearning algorithm beyond exact retraining, only to need to verify it with ten times or more compute on that baseline. However for small models this provides a useful metric prior to scaling.
 
 
-(population‑based, loss‑only membership inference attack implemented via logistic regression on losses of the unlearned model)
-
-(optimizations used on practice)
-
-\subsection{Memory consolidation and emotional memory therapy}
+\section{Memory consolidation and emotional memory therapy}
 Memory consolidation is the process of gradual migration and stabilization of memory from the hippocampus to the outer cortex. It's understanding mainly comes from protein inhibitor experiments, where the hippocampal formation is found to have a central role in all forms of memories. This process is long thought to be permanent (synaptic lock theory), until it was disproven by a shock (unconditional stimulus US) and queue (conditional stimulus CS) experiment on rats. Protein inhibitors administered after the event of recalling a memory is shown to disrupt the memory permanently, this event is called reconsolidation, in which the memory is liable for update.
 
 While reconsolidation is successfully implemented in treating emotional memory, it's replicability comes under question in other forms of memory, leading to several proposals to fix it. One theory of interest is latent cause theory \cite{gershman2017computational}, which incoporates observations from behavioral experiments, like conditioning, extinction, and renewal paradigms. It proposes that the brain learns the probability of an event generated by a latent cause, and memory is thus the association between them. It serves as a unifying theory for a wide range or observations following reconsolidation.
 
-It models a three way model of three parts: CS given cause, US given cause, and cause given prior causes. \\
-$
-P(\mathbf{x}_t \mid z_t = k, \mathbf{w}_k, \sigma_x^2) = \mathcal{N}(\mathbf{w}_k, \sigma_x^2 I)
-$
-
-CS given cause is drawn from the product normal distribution of it's expected values of that cause. \\
-$
-P(r_t \mid \mathbf{x}_t, z_t = k, \mathbf{w}_k, \sigma_r^2) = \mathcal{N}(\mathbf{w}_k^\top \mathbf{x}_t, \sigma_r^2)
-$
-
+It models a three way model of three parts: CS given cause, US given cause, and cause given prior causes.
+CS given cause is drawn from the product normal distribution of it's expected values of that cause.
 US given cause id drawn from the normal distribution in the mean of the hebbian sum of weights and CS.
-cause given prior causes is drawn from a temporal kernal, which implements the continguity principle of temporal proximity infers cause proximity. \\
-$
-P(z_t = k \mid \mathbf{z}_{1:t-1}) \propto
-\begin{cases}
-\sum_{t' < t} \mathcal{K}(\tau(t) - \tau(t')) \, \mathbb{I}[z_{t'} = k] & \text{(existing cause)} \\
-\alpha & \text{(new cause)}
-\end{cases}
-$
+cause given prior causes is drawn from a temporal kernal, which implements the continguity principle of temporal proximity (similar events in similar time frame) infers cause proximity.
 
+This model assumes that a cause is always present in any stimuli, and operates on a very abstract level. Recursively, causes can be theoretically represented by epsodic neurons which are neurons found to trigger only upon a singular experience or concept, linking through them with their pattern expressions in the outer cortex upon firing. This is potentially apt in explaining how and what conditions do these "pointer" neurons form, and is a good step to figure out the next step of how these "pointers" gradually migrate to the outer cortex for long term memory or reflex.
 
-\subsection{Hopfield network, Associative memory modeling}
+For unlearning, these pointers can be formed in a multitude of layers, with specific data, experience, and concepts. Formed through a common pointer, they could be altered to give us a targeted data-tied expression of a model which takes inputs from these "pointers". This would in turn greatly simplify the problem of engantled influence by being a representative of unwanted patterns, or indeed any pattern of interest, giving meaning to parameters in a model.
+
+\section{Hopfield network, Associative memory modeling}
 Hopfield networks are originally inspired by the numerous stable states in a ferromagnet's spin configurations, or Ising spins. This model is adapted to fully interconnected neurons where an update function changes a neurons' state based on the weighted sum of the others. Unlike typical forward networks, this network is fully recurrent and it's memory reliant on the convergence of the update function. These stable points are analogous to memory patterns. The encoded patterns, or the specific stable points, are dictated by an interaction function to randomly update neurons based on the weights connected to it. Numerous improvements to It has since been made to it including:
-
-Generalization of interaction function to $F(x) = exp(x)$, giving a n exponential storage capacty $N = 2^(d/2)$,
+exponential pattern storage capacity relative to number of neurons
 
 maintaining exponential capacity with standard two-body synnaptic connections by adding one hidden layer (one input and one output), giving the same capacity in realistic neuron configurations.(cite)
 
-Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads. The transformer equivalence states that if learned Q, K, V projects the query (input pattern), key (the current pattern), and value (the result pattern after going through update), the modern hopfield network is equivalent to an attention head in a transformer. \cite{ramsauer2020}
+Generalizing interaction function by making it differentiable in a propagation layer, with an update function equivalent to transformer attention heads. The transformer equivalence states that if learned Q, K, V projects the query (input pattern), key (the current pattern), and value (the result pattern after going through update), the modern Hopfield network is equivalent to an attention head in a transformer~\cite{ramsauer2020}.
 
-Hopfield networks are often used in modeling associative memory due to their partial cue pattern completion property, simple components, and clear bounded behaviour with an associated Energy function and lyponov function arguments about it's properties, convergent or otherwise.
+Hopfield networks is a literal translation of neural configurations in the brain to a computational model.It is often used in modeling associative memory due to their partial cue pattern completion property, where patterns in small sections could be rapidly auto-completed to the full pattern by approximation.
 
-\subsection{Hippocampal index theory}
+
+\section{Hippocampal index theory}
 The theory states that the hippocampal formation stores pointers to access memories in the outer cortex, as such the full context of the memory are integrated as one. These memories gradually stabilize in the cortex. Two proceses underly it's function: pattern seperation and pattern completion. Pattern completion concerns the brain's ability to imagine the full context of a memory, or a predictoin of a memory, by being exposed to a partial cue. This process is mainly attributed to CA3, a section of the hippocampus.  Pattern seperation is where similar experiences are orthogonalized into different memories. Originating from EC,  it is routed to DS (Dentate Gyrus) for sparse encoding, then it is stored in CA3, then routed through CA to the cortical memories.
 
 These two processes often complement each other in the Hippocampus, where pattern completion is mainly attributed to DG-CA3 associations, and pattern completion CA3-CA1 and CA1 to subiculum connections. This is supported by activity observations, in anterior hippocampus, where it is more active in the initial stages of information extraction; and activity in posterior hippocampus, which is more active in maintaining representations.
 
-This is further supported by the discovery of engram cells in the hippocampus, where they only repond to a certain memory/association.
+Drawing on the interpretation that these engram cell encods latent cause on signal expression in the outer cortex, the hippocampal index theory suggests that we could populate the causes of expressions with pattern seperation, thereby controlling how fine-grained our perceptive cause are. At the same time suggest that we can dictate relevant causes in a short period of time using pattern completion, to filter out most likely causes. This is relevant in time and energy savings that greatly reduces the amount of causes considered.
 
-\subsection{key problems and challenges}
+% \section{key problems and challenges}
 
-\subsubsection{Biological accuracy vs property emulation}
-When bridging the gap between structure of atomic scale to properties on the neural system level, biological accuracy, is often sacrificed for computaionala efficiency.
+% \section{Biological accuracy vs property emulation}
+% When bridging the gap between structure of atomic scale to properties on the neural system level, biological accuracy, is often sacrificed for computaionala efficiency.
 
-\subsubsection{opposite problem nature of brain aligned memory systems}
-When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning. where utility is kept on the basis that the information in question is removed.
+% \section{opposite problem nature of brain aligned memory systems}
+% When studying systems regarding memory models of the human brain, the problem turns into that of, maintaining the ability to obtain new information, while keeping the previous acquired memory intact. This is inherently opposite of unlearning. where utility is kept on the basis that the information in question is removed.
 
-\subsection{past work and state-of-the-art}
-(HICL achieved FLOPS advantage and performance advantage over other continual learning models)
-what other work has been done on it or aspects relating to,
-key technologies and state-of-the-art
+% \subsection{past work and state-of-the-art}
+% (HICL achieved FLOPS advantage and performance advantage over other continual learning models)
+% what other work has been done on it or aspects relating to,
+% key technologies and state-of-the-art
 
-\section{System requirements and specification}
-\subsection{requirements gathering and prioritization}
-what is the project even about
+\chapter{System requirements and specification}
+In summary of the introduced concepts, we outline on a high level how an inspired system, and evaluation could arise from the above findings:
 
-\subsection{appropriate software development life cycle methodologies for development projects}
+\paragraph{Evaluation} We would utilize the classification metric of the 2023 google unnlearning competition, predicting images to age. Scores obtained would be compared to other submissions in the competition.
 
-\subsection{identify key and optional features / aspects}
+\paragraph{Cause Index} The latent cause theory model triangle relationship between conditioned stimuli, unconditioned stimuli, latent cause and conditional response. Would be reframed as data, unlearning marker, cause, and output. In which a model layer would be learnt to entirely dependent on the hidden causes in each layer to determine layer output. 
 
-\section{Legal, Social Ethical and Professional issues}
+\paragraph{index resolution and unlearning} While cause index would serve as cause creation to the tree of causes in the same level, pattern seperation and completion would act as depth extension of the cause tree, in which higher layers would allow greater resolution. During unlearning, the causes would grow to allow direct pin-point of data, then removed or updated, to achieve unlearning.
 
-\section{System Design}
-\subsection{Development}
-\subsection{Experiemnt design, research, and analytical techniques}
-\subsection{Phases of development and experiments}
-\subsection{add details of design or experiments - challenges, problems, workarounds, adaptations, extensions, etc.}
-\subsection{Justification of design choices and highlight the challenges}
 
-\section{Experimental Results / Evaluation}
-\subsection{evaluate how the system performs}
-\subsection{discuss results and show insights into why you got that result}
 
-\section{Conclusion and Future Work}
+\section{requirements gathering and prioritization}
+\subsection{2023 unlearning competition metric}
+\paragraph{Link} 
 
-\subsection{Overall project conclusions (how did you achieve the project objectives set at the beginning?)}
+\url{https://github.com/google-deepmind/unlearning_evaluation}
 
-No practical system was achieved, we explored a wide range of literature in biological memory and computational models to exlpain biological memory phenomenon.
+\paragraph{Data} CASIA-CeFA \cite{liu2021casia,liu2021cross} \\
+Example label: .txt file on each line: <id> <year of birth> <F/M> \\
+Example target: .jpg 300*300 (variable size)
 
+\paragraph{Pre-trained model} 
+a ResNet-18 image classifier trained for 30 epochs on a dataset of face images, predicting age group (10 classes) \\
+Input: 32*32 (resized images)
+
+\paragraph{prioritization}
+High. Since without the metric, we cannot evaluate or compare methods of choice.
+
+\subsection{latent cause theory model}
+\paragraph{Link} \url{https://github.com/sjgershm/memory-modification} \cite{gershman2017computational}
+\paragraph{prioritization}
+High. Core model design
+\subsection{Pattern seperation}
+
+\paragraph{prioritization}
+High. Core model design
+\subsection{Pattern completion}
+\paragraph{prioritization}
+Low. Optimization
+\subsection{comparison with other models}
+Compare against exact, fine-tune, and other unlearning methods.
+\paragraph{prioritization}
+Low. since unlearning metric score already used in large competition with precedence, plus running the inefficient unlearning metric on all of those models is infesible.
+
+% \section{appropriate software development life cycle methodologies for development projects}
+
+\chapter{Legal, Social Ethical and Professional issues}
+\section{Inherent bias of training data and the limits of unlearning}
+Training data is inherently biased, and the absorption of these biases into an increasingly AI-generated content landscape poses a substantial challenge to keeping models fair and neutral. Machine unlearning has been proposed as a partial remedy: rather than retraining a model from scratch on a re-curated dataset, biased or unrepresentative subsets of training data can, in principle, be selectively removed from an already-deployed model. In practice this is difficult. Bias is rarely localized to a small, identifiable set of training examples; it is typically distributed across the dataset and entangled with the model's learned representations, meaning that unlearning a specific subset may not fully remove its influence on downstream predictions. There is also a risk of \textit{catastrophic forgetting}, where aggressive unlearning degrades unrelated capabilities or, paradoxically, introduces new biases by shifting the model's decision boundaries in unpredictable ways. This raises an open research question central to the chapter: can unlearning be used not only as a compliance mechanism for erasure requests, but as a genuine tool for bias correction, and if so, how is that correction verified?
+
+\section{Data sovereignty, intellectual property, and the right to erasure}
+Data ownership and data security are fundamental to personal well-being, safety, and an accountable justice system, and machine unlearning sits at the technical intersection of these concerns. Where data protection regulations grant individuals a right to erasure, and where copyright holders seek removal of unlicensed material absorbed into a model's parameters, unlearning is the mechanism by which such rights could be practically enforced against a trained model rather than only against a raw dataset. This distinction matters: deleting a data point from a training corpus does nothing to remove its influence from a model already trained on it, so data sovereignty in the age of machine learning cannot be satisfied by database-level deletion alone. The same technical gap applies to intellectual property claims, where a rights holder may demand not just that infringing material be excluded from future training runs, but that its influence be actively unlearned from existing deployed models. This creates a tension between individual/creator control over data and the practical, computational cost of enforcing that control at the model level.
+
+\section{Accountability and model transparency in unlearning}
+Models are increasingly capable of producing results far exceeding human performance. Without a baked-in, human-readable, and accountable step chain, AI could potentially override human input and automate decisions without oversight aligned to common human interests. This concern extends directly to machine unlearning itself: an unlearning operation is only as trustworthy as the ability to verify that it actually occurred. Unlike conventional deletion, where removal from storage is straightforward to confirm, unlearning claims are made about a model's internal parameters, which are not human-interpretable by default. This creates an accountability gap: an organisation can claim compliance with an erasure request while having no rigorous, auditable proof that the targeted data's influence has actually been removed. Verifiable and certifiable unlearning, mechanisms that allow independent auditors or regulators to confirm that specific data no longer influences a model's outputs, is therefore a prerequisite for genuine accountability, not an optional technical nicety.
+
+\chapter{System Design}
+\section{Development}
+\section{Experiemnt design, research, and analytical techniques}
+\section{Phases of development and experiments}
+\section{add details of design or experiments - challenges, problems, workarounds, adaptations, extensions, etc.}
+\section{Justification of design choices and highlight the challenges}
+
+\chapter{Experimental Results / Evaluation}
+\section{evaluate how the system performs}
+\section{discuss results and show insights into why you got that result}
+
+\chapter{Conclusion and Discussion}
+
+\section{Overall project conclusion}
 Future work includes exploration of components of brain forgetting mechanism to modify continual learning into continual learning and unlearning models.
-
-\section{References}
-
-\begin{thebibliography}{}
-
-\bibitem{geng2025llmunlearning}
-J. Geng et al., ``A Comprehensive Survey of Machine Unlearning Techniques for Large Language Models: Methods, Challenges and Future Directions,'' arXiv preprint arXiv:2503.01854, 2025. [Online]. Available: https://arxiv.org/abs/2503.01854
-
-\bibitem{liu2024survey}
-Y. Liu et al., ``A Comprehensive Survey of Machine Unlearning Techniques for Large Language Models,'' arXiv preprint arXiv:2405.07406, May 2024. [Online]. Available: https://arxiv.org/pdf/2405.07406
-
-\bibitem{gershman2017computational}
-S. J. Gershman, M. H. Monfils, K. A. Norman, and Y. Niv, ``The computational nature of memory modification,'' *eLife*, vol. 6, p. e23763, Mar. 2017, doi: 10.7554/eLife.23763. Erratum in: *eLife*, vol. 6, p. e28693, May 2017, doi: 10.7554/eLife.28693. [Online]. Available: https://pmc.ncbi.nlm.nih.gov/articles/PMC5391211/
-
-\bibitem{bourtoule2021sisa}
-L. Bourtoule et al., ``Machine Unlearning,'' in *Proc. 38th Int. Conf. Mach. Learn. (ICML)*, 2021, arXiv:1912.03817. [Online]. Available: https://arxiv.org/pdf/1912.03817
-
-\bibitem{arcane2022}
-H.~Yan, X.~Li, Z.~Guo, H.~Li, F.~Li, and X.~Lin, 
-``ARCANE: An efficient architecture for exact machine unlearning,'' 
-in \emph{Proceedings of the 31st International Joint Conference on Artificial Intelligence (IJCAI)}, 
-2022, pp. 4006--4013.
-
-\bibitem{mcgaugh2000memory}
-J. L. McGaugh, ``Memory--a century of consolidation,'' *Science*, vol. 287, no. 5451, pp. 248--251, Jan. 2000.
-
-\bibitem{spens2023generative}
-E. Spens and N. Burgess, ``A generative model of memory construction and consolidation,'' *Nat. Hum. Behav.*, 2023.
-
-\bibitem{arxiv250816651}
-[Authors], ``Reassessment of the Hippocampal Index Theory: A Synopsis of the Present Evidence and Computational Models,'' arXiv preprint arXiv:2508.16651, Aug. 2025. [Online]. Available: https://arxiv.org/abs/2508.16651
-
-% ### 
-
-\bibitem{anthropic2024}
-Anthropic, ``Claude 3.5 Technical Report,'' Anthropic, Tech. Rep., Oct. 2024. [Online]. Available: https://www.anthropic.com/news/claude-3-5-sonnet
-
-\bibitem{bourtoule2021}
-C.~Bourtoule \emph{et al.}, ``Machine unlearning,'' in \emph{Proc. IEEE Symp. Security Privacy (SP)}, San Francisco, CA, USA, 2021, pp. 141--159, doi: 10.1109/SP40001.2021.00092.
-
-\bibitem{kurmanji2024}
-M.~Kurmanji \emph{et al.}, ``Limits of gradient-based unlearning in large models,'' in \emph{Proc. NeurIPS}, New Orleans, LA, USA, 2024.
-
-\bibitem{shao2025}
-R.~Shao \emph{et al.}, ``Verifiable unlearning with zero-knowledge proofs,'' in \emph{Proc. ICLR}, Vienna, Austria, 2025.
-
-\bibitem{liu2024}
-K.~Z.~Liu, ``Machine unlearning in 2024,'' Stanford CS Blog, May 2024. [Online]. Available: https://ai.stanford.edu/~kzliu/blog/unlearning
-
-\bibitem{edps2025}
-European Data Protection Supervisor (EDPS), ``Preliminary Findings on Machine Unlearning and GDPR Article 17 Enforcement Actions (2024--2025),'' EDPS, Brussels, Belgium, Tech. Rep., Mar. 2025.
-
-\bibitem{cao2015}
-Y.~Cao and J.~Yang, ``Towards making systems forget with machine unlearning,'' in \emph{Proc. IEEE Symp. Security Privacy (S\&P)}, San Jose, CA, USA, May 2015, pp. 463--480, doi: 10.1109/SP.2015.35.
-
-\bibitem{sekhar2021}
-A.~Sekhari, J.~Acharya, G.~Kamath, and A.~T.~Suresh, ``Remember what you want to forget: Algorithms for machine unlearning,'' in \emph{Adv. Neural Inf. Process. Syst. (NeurIPS)}, vol. 34, 2021, pp. 18075--18086.
-
-\bibitem{xu2023}
-H.~Xu, T.~Zhu, L.~Zhang, W.~Zhou, and P.~S.~Yu, ``Machine unlearning: A survey,'' \emph{arXiv preprint arXiv:2306.03558}, 2023.
-
-\bibitem{wang2024}
-C.~Wang \emph{et al.}, ``Machine unlearning: A comprehensive survey,'' \emph{arXiv preprint arXiv:2405.07406}, 2024.
-
-\bibitem{brunet2008}
-A.~Brunet, S.~P.~Orr, J.~Tremblay, K.~Robertson, K.~Nader, and R.~K.~Pitman, ``Effect of post-retrieval propranolol on psychophysiologic responding during subsequent script-driven traumatic imagery in post-traumatic stress disorder,'' \emph{J. Psychiatr. Res.}, vol. 42, no. 6, pp. 503--506, May 2008, doi: 10.1016/j.jpsychires.2007.05.006.
-
-\bibitem{brunet2014}
-A.~Brunet, É.~Thomas, D.~Saumier, A.~R.~Ashbaugh, and R.~K.~Pitman, ``Trauma reactivation plus propranolol is associated with durably low physiological responding during subsequent script-driven traumatic imagery,'' \emph{Can. J. Psychiatry}, vol. 59, no. 4, pp. 228--232, Apr. 2014, doi: 10.1177/070674371405900408.
-
-\bibitem{brunet2018}
-A.~Brunet \emph{et al.}, ``Reduction of PTSD symptoms with pre-reactivation propranolol therapy: A randomized controlled trial,'' \emph{Am. J. Psychiatry}, vol. 175, no. 5, pp. 427--433, May 2018, doi: 10.1176/appi.ajp.2017.17050481.
-
-\bibitem{wright2021}
-L.~A.~Wright, L.~Horstmann, E.~A.~Holmes, and J.~I.~Bisson, ``Consolidation/reconsolidation therapies for the prevention and treatment of PTSD and re-experiencing: a systematic review and meta-analysis,'' \emph{Transl. Psychiatry}, vol. 11, no. 1, p. 453, 2021, doi: 10.1038/s41398-021-01570-w.
-
-\bibitem{kamboj2020}
-S.~K.~Kamboj \emph{et al.}, ``Reduction in the occurrence of distressing involuntary memories following propranolol or hydrocortisone in healthy women,'' \emph{Psychol. Med.}, vol. 50, pp. 1148--1155, 2020, doi: 10.1017/S0033291719000947.
-
-\bibitem{smith2005}
-K.~T.~Smith and L.~R.~Squire, ``Effects of memory consolidation on human hippocampal activity during retrieval,'' \emph{J. Neurosci.}, vol. 25, no. 47, pp. 10805--10810, Nov. 2005, doi: 10.1523/JNEUROSCI.2891-05.2005.
-
-\bibitem{ngo2014}
-H.-G.~Ngo, A.-M.~Björk, and J.~Born, ``Memory consolidation by replay of stimulus-specific neural activity,'' \emph{Proc. Natl. Acad. Sci. U.S.A.}, vol. 111, no. 52, pp. 18727--18732, Dec. 2014, doi: 10.1073/pnas.1418931111.
-
-\bibitem{davis2010}
-R.~Davis, S.~Renaudineau, R.~Poirier, B.~Poucet, E.~Save, and S.~Laroche, ``The formation and stability of recognition memory: What happens upon recall?,'' \emph{Front. Behav. Neurosci.}, vol. 4, p. 117, 2010, doi: 10.3389/fnbeh.2010.00117.
-
-\bibitem{spens2023}
-E.~Spens and N.~Burgess, ``A generative model of memory construction and consolidation,'' \emph{Nat. Hum. Behav.}, vol. 7, pp. 1035--1046, 2023, doi: 10.1038/s41562-023-01599-8.
-
-\bibitem{sun2023}
-W.~Sun, M.~Advani, N.~Spruston, A.~Saxe, and J.~E.~Fitzgerald, ``Organizing memories for generalization in complementary learning systems,'' \emph{Nat. Neurosci.}, vol. 26, pp. 1436--1447, 2023, doi: 10.1038/s41593-023-01381-8.
-
-\bibitem{mcgaugh2000}
-J.~L.~McGaugh, ``Memory--a century of consolidation,'' \emph{Science}, vol. 287, no. 5451, pp. 248--251, Jan. 2000, doi: 10.1126/science.287.5451.248.
-
-\bibitem{neel2020}
-S.~Neel, A.~Roth, and S.~Sharifi-Malvajerdi, ``Descent-to-delete: Gradient-based methods for machine unlearning,'' \emph{arXiv preprint arXiv:2007.02923}, 2020.
-
-\bibitem{meng2022}
-K.~Meng, D.~Bau, A.~Andonian, and Y.~Belinkov, ``Locating and editing factual associations in GPT,'' in \emph{Adv. Neural Inf. Process. Syst. (NeurIPS)}, 2022.
-
-\bibitem{meng2023}
-K.~Meng, A.~S.~Sharma, A.~Andonian, Y.~Belinkov, and D.~Bau, ``MEMIT: Mass-editing memory in a transformer,'' in \emph{Int. Conf. Learn. Represent. (ICLR)}, 2023.
-
-\bibitem{liu2020mask}
-Y.~Liu \emph{et al.}, ``Learn to forget: Machine unlearning via neuron masking,'' \emph{arXiv preprint arXiv:2003.10933}, 2020.
-
-\bibitem{liu2023fisher}
-Y.~Liu, C.~Sun, Y.~Wu, and A.~Zhou, ``Unlearning with Fisher masking,'' \emph{arXiv preprint arXiv:2310.05331}, 2023.
-
-\bibitem{hu2021}
-E.~J.~Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang, and W.~Chen, ``LoRA: Low-rank adaptation of large language models,'' \emph{arXiv preprint arXiv:2106.09685}, 2021.
-
-\bibitem{yao2023}
-Y.~Yao, ``Large language model unlearning,'' \emph{arXiv preprint arXiv:2310.10683}, 2023.
-
-\bibitem{gundavarapu2024}
-S.~K.~Gundavarapu, S.~Agarwal, A.~Arora, and C.~T.~Jagadeeshaiah, ``Machine unlearning in large language models,'' \emph{arXiv preprint arXiv:2405.15152}, 2024.
-
-\bibitem{ramsauer2020}
-H.~Ramsauer \emph{et al.}, ``Hopfield networks is all you need,'' \emph{arXiv preprint arXiv:2008.02217}, 2020.
-
-
-
-\end{thebibliography}
-
-\appendix
+\section{future work}
 
 \section{Appendix}
-
+\bibliographystyle{agsm}
+\bibliography{references}
 \end{document}
 
 

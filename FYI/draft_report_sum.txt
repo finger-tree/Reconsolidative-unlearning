@@ -1,0 +1,29 @@
+context
+    critical evaluation
+    don't put titles
+    show clear criticism or limitations
+
+    format:
+        1 -> piece of work -> summary
+        2 -> clear criticism or limitations
+    
+    clear statement of work done
+    abstract + introduction too short, underdeveloped
+
+    no equations are required in context (abstract and introduction)
+
+
+methodology and implementation
+    fill in the placeholders
+    make it reproducable and evaluatable
+
+evaluation and critical review
+    present evaluation, results, compare with related work
+    analysis, interpretation, understand outcomes
+
+presentation report and video
+    make a video
+
+LESP
+    address any legal, social, ethical issues
+
